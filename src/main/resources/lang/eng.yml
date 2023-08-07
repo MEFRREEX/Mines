@@ -1,0 +1,106 @@
+# Commands
+command-no-permission: "You cannot use this command!"
+command-player-not-found: "No player found!"
+command-mine-not-found: "A mine by that name does not exist."
+command-mine-already-exists: "A mine by that name already exists."
+
+# Sub commands
+subcommand-help-available: "Available sub commands:"
+
+subcommand-setpos-pos1: "The first point is set!"
+subcommand-setpos-pos2: "The second point is set!"
+
+subcommand-create-not-found-point1: "Start by setting the first point."
+subcommand-create-not-found-point2: "Start by setting the second point."
+subcommand-create-created: "You have successfully created a new mine!"
+
+subcommand-delete-deleted: "Mine has been removed"
+
+# Forms
+form-select-title: "Mines"
+form-select-content: "Select mine" 
+
+# Create mine form
+form-create-title: "Create a mine"
+form-create-input-name-name: "Name of mine"
+form-create-input-name-placeholder: "Name"
+
+# Delete mine form
+form-delete-title: "Delete mine"
+form-delete-content: "Select the mine to delete"
+
+# Edit mine form
+form-edit-title: "Edit mine"
+form-edit-content: "Edit mine"
+
+form-edit-button-blocks: "Edit blocks"
+form-edit-button-settings: "Edit settings"
+form-edit-button-teleport-point: "Set the teleportation point"
+form-edit-button-first-point: "Set the first point"
+form-edit-button-second-point: "Set the second point"
+
+form-edit-message-teleport-point-set: "You've set a teleportation point!"
+form-edit-message-first-point-set: "The first point is set!"
+form-edit-message-second-point-set: "The second point is set!"
+
+# Edit mine settings form
+form-edit-settings-title: "Edit mine settings"
+
+form-edit-settings-input-world-name: "Mine world"
+form-edit-settings-input-world-placeholder: "World"
+
+form-edit-settings-label-auto-update: "Auto update"
+form-edit-settings-toggle-auto-update: "Enable auto update"
+form-edit-settings-input-update-interval-name: "Update interval &7(In seconds)"
+form-edit-settings-input-update-interval-placeholder: "Interval"
+
+form-edit-settings-label-update-below-percent: "Update below percent"
+form-edit-settings-toggle-update-below-percent: "Enable update below percent &7(The mine will be update if the percent of remaining blocks is lower than the)"
+form-edit-settings-input-update-percent-name: "Update percent"
+form-edit-settings-input-update-percent-placeholder: "Percent"
+
+form-edit-settings-label-parameters: "Parameters"
+form-edit-settings-toggle-safe-update: "Safe update &7(If there is a player in the mine when the mine is updated, he will be teleported to the specified point)"
+
+form-edit-settings-message-world-not-found: "The world is not found."
+form-edit-settings-message-interval-nan: "Update interval must be a positive integer."
+form-edit-settings-message-update-percent-invalid: "Update percent must be a number between 0 and 100."
+form-edit-settings-message-edited: "Mine settings have been successfully updated!"
+
+# Edit mine blocks form
+form-edit-blocks-title: "Edit mine blocks"
+form-edit-blocks-content: "Mine blocks"
+
+form-edit-blocks-button-add: "Add block"
+form-edit-blocks-button-block: "&l[0]\n&r&7Click to remove"
+
+form-edit-blocks-message-removed: "The block has been removed"
+
+# Add new block
+form-blocks-new-block-title: "Add new block"
+
+form-blocks-new-block-input-id-name: "Block id"
+form-blocks-new-block-input-id-placeholder: "Id"
+
+form-blocks-new-block-input-damage-name: "Block damage"
+form-blocks-new-block-input-damage-placeholder: "Damage"
+
+form-blocks-new-block-input-chance-name: "Generation chance"
+form-blocks-new-block-input-chance-placeholder: "Chance"
+
+form-blocks-new-block-message-id-nan: "Id must be an integer."
+form-blocks-new-block-message-damage-nan: "Damage must be an integer."
+form-blocks-new-block-message-chance-invalid: "Chance must be a number between 0 and 100."
+form-blocks-new-block-message-added: "You have successfully added block [0] with a chance of [1]."
+
+# Mine action form
+form-action-title: "Action for mine"
+form-action-content: "Select an action for the mine"
+
+form-action-button-teleport: "Teleport"
+form-action-button-update: "Update blocks"
+form-action-button-edit: "Edit"
+form-action-button-delete: "&cDelete"
+
+form-action-message-teleported: "You've teleported to the mine!"
+form-action-message-updated: "Blocks successfully updated!"

@@ -1,0 +1,6 @@
+# Available languages: eng (English)
+language: "eng"
+
+# Update mines if there are no players on the server
+# Disabling this option can improve performance
+update-if-no-players: true
