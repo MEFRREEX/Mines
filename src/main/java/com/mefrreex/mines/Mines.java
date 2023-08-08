@@ -36,7 +36,7 @@ public class Mines extends PluginBase {
 
     @Override
     public void onEnable() {
-        this.getServer().getPluginManager().registerEvents(new PlayerListener(), this);
+        this.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         this.getServer().getScheduler().scheduleRepeatingTask(this, new AutoUpdateTask(this), 20);
         Language.loadAll(this);
         BaseCommand command = new BaseCommand();

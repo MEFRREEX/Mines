@@ -1,6 +1,7 @@
 package com.mefrreex.mines.mine;
 
 import cn.nukkit.Player;
+import cn.nukkit.block.Block;
 import cn.nukkit.level.Level;
 import com.mefrreex.mines.Mines;
 import com.mefrreex.mines.event.MineInitEvent;
@@ -42,6 +43,9 @@ public class Mine {
 
     @SerializedName("blocks") private List<MineBlock> blocks = new ArrayList<>();
     private transient AtomicLong currentSize;
+
+    @SerializedName("locked") private boolean locked;
+    @SerializedName("permission") private String permission;   
     
     private transient boolean updating;
 
@@ -105,6 +109,16 @@ public class Mine {
 
     public double getOccupancyPercent() {
         return Utils.toPercentage(currentSize.get(), 0, this.getSize());
+    }
+
+    public MineBlock getMineBlock(Block block) {
+        for (MineBlock mineBlock : blocks) {
+            if (mineBlock.getId() == block.getId() && 
+                mineBlock.getDamage() == block.getDamage()) {
+                return mineBlock;
+            }
+        }
+        return null;
     }
 
     public boolean isInMine(Point point) {

@@ -16,6 +16,9 @@ subcommand-create-created: "You have successfully created a new mine!"
 
 subcommand-delete-deleted: "Mine has been removed"
 
+# Other
+mine-no-permission: "You don't have a permission for this mine."
+
 # Forms
 form-select-title: "Mines"
 form-select-content: "Select mine" 
@@ -48,6 +51,11 @@ form-edit-settings-title: "Edit mine settings"
 
 form-edit-settings-input-world-name: "Mine world"
 form-edit-settings-input-world-placeholder: "World"
+
+form-edit-settings-label-permission: "Permission"
+form-edit-settings-toggle-locked: "Enable permission"
+form-edit-settings-input-permission-name: "Permission &7(Required to enter the mine)"
+form-edit-settings-input-permission-placeholder: "Permission" 
 
 form-edit-settings-label-auto-update: "Auto update"
 form-edit-settings-toggle-auto-update: "Enable auto update"

@@ -45,6 +45,14 @@ public class EditMineForm {
                 .setDefaultValue(mine.getLevelName())
                 .build())
 
+            .addElement("\n" + Mines.PREFIX_YELLOW + Language.get("form-edit-settings-label-permission"))
+            .addElement("locked", new Toggle(Language.get("form-edit-settings-toggle-locked"), mine.isLocked()))
+            .addElement("permission", Input.builder()
+                .setName(Language.get("form-edit-settings-input-permission-name"))
+                .setPlaceholder(Language.get("form-edit-settings-input-permission-placeholder"))
+                .setDefaultValue(mine.getPermission() != null ? String.valueOf(mine.getPermission()) : "mine.permission." + mine.getName())
+                .build())
+
             .addElement("\n" + Mines.PREFIX_YELLOW + Language.get("form-edit-settings-label-auto-update"))
             .addElement("autoUpdate", new Toggle(Language.get("form-edit-settings-toggle-auto-update"), mine.isAutoUpdate()))
             .addElement("updateInterval", Input.builder()
@@ -71,6 +79,10 @@ public class EditMineForm {
                 player.sendMessage(Mines.PREFIX_RED + Language.get("form-edit-settings-message-world-not-found"));
                 return;
             }
+
+            // Permission
+            boolean locked = response.getToggle("locked").getValue();
+            String permission = response.getInput("permission").getValue();
 
             // Auto update
             boolean autoUpdate = response.getToggle("autoUpdate").getValue();
@@ -104,6 +116,8 @@ public class EditMineForm {
             boolean safeUpdate = response.getToggle("safeUpdate").getValue();
             
             mine.setLevelName(levelName);
+            mine.setLocked(locked);
+            mine.setPermission(permission);
             mine.setAutoUpdate(autoUpdate);
             mine.setUpdateInterval(updateInterval);
             mine.setUpdateBelowPercent(updateBelowPercent);

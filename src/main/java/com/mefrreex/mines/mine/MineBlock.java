@@ -3,6 +3,7 @@ package com.mefrreex.mines.mine;
 import cn.nukkit.block.Block;
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 @Getter
@@ -11,7 +12,7 @@ public class MineBlock {
     
     @SerializedName("id") private int id;
     @SerializedName("damage") private int damage;
-    @SerializedName("chance") private double chance;
+    @SerializedName("chance") @Setter private double chance;
 
     public MineBlock(Block block, double chance) {
         this.id = block.getId();
