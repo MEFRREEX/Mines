@@ -47,7 +47,7 @@ public class PlayerListener implements Listener {
                         if (message != null && !message.isBlank()) {
                             player.sendMessage(message);
                         }
-                        event.setCancelled();
+                        player.teleport(mine.getTeleportPoint().toLocation());
                     }
                 }
             }
