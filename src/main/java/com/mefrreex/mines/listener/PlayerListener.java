@@ -31,12 +31,24 @@ public class PlayerListener implements Listener {
         List<Mine> mines = MineManager.getMinesAt(player);
         for (Mine mine : mines) {
             if (mine.getTeleportPoint() != null) {
+
                 if (mine.isUpdating()) {
                     player.teleport(mine.getTeleportPoint().toLocation());
                 }
+                
                 if (mine.isLocked() && !player.hasPermission(mine.getPermission())) {
-                    player.teleport(mine.getTeleportPoint().toLocation());
-                    player.sendMessage(Mines.PREFIX_RED + Language.get("mine-no-permission", mine.getName()));
+
+                    NoMinePermissionEvent permissionEvent = new NoMinePermissionEvent(player, mine);
+                    permissionEvent.setPermissionMessage(Mines.PREFIX_RED + Language.get("mine-no-permission", mine.getName()));
+                    main.getServer().getPluginManager().callEvent(permissionEvent);
+                    
+                    if (!permissionEvent.isCancelled()) {
+                        String message = permissionEvent.getPermissionMessage();
+                        if (message != null && !message.isBlank()) {
+                            player.sendMessage(message);
+                        }
+                        event.setCancelled();
+                    }
                 }
             }
         }
