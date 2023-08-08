@@ -20,16 +20,15 @@ public class MineActionForm {
             player.sendMessage(Mines.PREFIX_GREEN + Language.get("form-action-message-teleported"));
         });
         form.addButton(Language.get("form-action-button-update"), (pl, b) -> {
-            mine.update();
-            player.sendMessage(Mines.PREFIX_GREEN + Language.get("form-action-message-updated"));
-        });
-        form.addButton(Language.get("form-action-button-edit"), (pl, b) -> {
-            EditMineForm.sendTo(player, mine);
-        });
-        form.addButton(Language.get("form-action-button-delete"), (pl, b) -> {
-            mine.remove();
-            player.sendMessage(Mines.PREFIX_GREEN + Language.get("subcommand-delete-deleted"));
-        });
+                mine.update();
+                player.sendMessage(Mines.PREFIX_GREEN + Language.get("form-action-message-updated"));
+            })
+            .addButton(Language.get("form-action-button-edit"), (pl, b) -> {
+                EditMineForm.sendTo(player, mine);
+            })
+            .addButton(Language.get("form-action-button-delete"), (pl, b) -> {
+                DeleteMineForm.sendTo(player, mine);
+            });
         form.send(player);
     }
 }

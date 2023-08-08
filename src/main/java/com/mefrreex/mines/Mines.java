@@ -21,9 +21,9 @@ public class Mines extends PluginBase {
     private static final @Getter HashMap<Player, Point> firstPoints = new HashMap<>();
     private static final @Getter HashMap<Player, Point> secondPoints = new HashMap<>();
 
-    public static final String PREFIX_RED = "§l§c>§r§f ";
-    public static final String PREFIX_YELLOW = "§l§e>§r§f ";
-    public static final String PREFIX_GREEN = "§l§a>§r§f ";
+    public static String PREFIX_RED;
+    public static String PREFIX_YELLOW;
+    public static String PREFIX_GREEN;
 
     public static final String PERMISSION_ADMIN = "mines.admin";
 
@@ -38,10 +38,10 @@ public class Mines extends PluginBase {
     public void onEnable() {
         this.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         this.getServer().getScheduler().scheduleRepeatingTask(this, new AutoUpdateTask(this), 20);
+        new BaseCommand().register();
         Language.loadAll(this);
-        BaseCommand command = new BaseCommand();
-        command.register();
         MineManager.loadAll();
+        this.initPrefixes();
     }
 
     @Override
@@ -49,6 +49,13 @@ public class Mines extends PluginBase {
         MineManager.saveAll();
     }
 
+    private void initPrefixes() {
+        PREFIX_GREEN = Language.get("prefix-green");
+        PREFIX_YELLOW = Language.get("prefix-yellow");
+        PREFIX_RED = Language.get("prefix-red");
+    }
+
+    /* Instance */
     public static Mines get() {
         return instance;
     }

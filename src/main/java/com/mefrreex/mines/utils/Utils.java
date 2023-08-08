@@ -1,17 +1,16 @@
 package com.mefrreex.mines.utils;
 
-import com.mefrreex.mines.mine.MineBlock;
-
 import cn.nukkit.Player;
 import cn.nukkit.level.Level;
+import com.mefrreex.mines.mine.MineBlock;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Utils {
     
-    private static final Random random = new Random();
+    private static final SecureRandom random = new SecureRandom();
 
     public static MineBlock getBlockWithChance(List<MineBlock> blocks) {
         MineBlock result = null;
@@ -20,12 +19,12 @@ public class Utils {
         double blockChance = 0;
         do {
             block = blocks.get(random.nextInt(blocks.size()));
-            blockRandom = random.nextDouble(99) + 1;
+            blockRandom = random.nextDouble(99.9) + 0.1;
             blockChance = block.getChance();
             if (blockRandom <= blockChance) {
                 result = block;
             }
-        } while (blockRandom > blockChance);
+        } while (result == null);
         return result;
     }
 

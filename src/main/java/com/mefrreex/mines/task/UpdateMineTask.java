@@ -28,6 +28,7 @@ public class UpdateMineTask extends Task {
     @Override
     public void onRun(int currentTick) {
         CompletableFuture.runAsync(() -> {
+            mine.setUpdating(true);
             ExecutorService executor = Executors.newSingleThreadExecutor();
             executor.execute(() -> {
     
@@ -56,5 +57,4 @@ public class UpdateMineTask extends Task {
             mine.setUpdating(false);
         });
     }
-    
 }

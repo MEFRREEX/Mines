@@ -17,15 +17,17 @@ public class ListSubCommand extends BaseSubCommand {
 
     @Override
     public boolean execute(CommandSender sender, String commandLabel, String label, String[] args) {
-        if (!testPermission(sender)) {
+        if (!this.testPermission(sender)) {
             sender.sendMessage(Mines.PREFIX_RED + Language.get("command-no-permission"));
             return false;
         }
-        if (!(sender instanceof Player)) {
+        
+        if (!(sender instanceof Player player)) {
             sender.sendMessage(Mines.PREFIX_RED + Language.get("command-in-game"));
             return false;
         }
-        SelectMineForm.sendTo((Player) sender, (pl, mine) -> MineActionForm.sendTo(pl, mine));
+
+        SelectMineForm.sendTo(player, (pl, mine) -> MineActionForm.sendTo(pl, mine));
         return true;
     } 
 }

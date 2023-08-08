@@ -23,29 +23,37 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Getter @Setter
-@ToString
+@ToString(exclude = {"main"})
 public class Mine {
     
+    /** Mine name */
     @SerializedName("name") private final String name;
     
+    /** Area and level name */
     @SerializedName("area") private Area area;
     @SerializedName("level") private String levelName;
     
+    /** Mine permission */
+    @SerializedName("locked") private boolean locked;
+    @SerializedName("permission") private String permission;   
+
+    /** Auto update and update interval */
     @SerializedName("autoUpdate") private boolean autoUpdate = true;
     @SerializedName("updateInterval") private long updateInterval = 60;
     private transient AtomicLong currentUpdateInterval;
 
+    /** Update below percent and update percen*/
     @SerializedName("updateBelowPercent") private boolean updateBelowPercent;
     @SerializedName("updatePercent") private double updatePercent = 0;
 
+    /** Safe update */
     @SerializedName("safeUpdate") private boolean safeUpdate;
+    /** Teleport point */
     @SerializedName("teleportPoint") private PointLocation teleportPoint;
 
+    /** Mine blocks */
     @SerializedName("blocks") private List<MineBlock> blocks = new ArrayList<>();
     private transient AtomicLong currentSize;
-
-    @SerializedName("locked") private boolean locked;
-    @SerializedName("permission") private String permission;   
     
     private transient boolean updating;
 
@@ -61,7 +69,16 @@ public class Mine {
         this.area = area;
     }
 
+    /**
+     * Init mine
+     * @param main
+     * @return Mines instance
+     */
     public boolean init(Mines main) {
+        if (this.main != null) {
+            throw new RuntimeException("Mine is not initialized");
+        }
+
         MineInitEvent event = new MineInitEvent(this);
         main.getServer().getPluginManager().callEvent(event);
 
@@ -78,39 +95,76 @@ public class Mine {
 
     }
 
+    /**
+     * Get first Point
+     * @return Point
+     */
     public Point getFirstPoint() {
         return area != null ? area.getMinPoint() : null;
     }
 
+    /**
+     * Set first Point
+     * @param point Point
+     */
     public void setFirstPoint(Point point) {
-        this.area = new Area(point, area.getMaxPoint());
+        this.area = new Area(point, this.getFirstPoint());
     }
 
+    /**
+     * Get second Point
+     * @return Point
+     */
     public Point getSecondPoint() {
         return area != null ? area.getMaxPoint() : null;
     }
 
+    /**
+     * Set second Point
+     * @param point Point
+     */
     public void setSecondPoint(Point point) {
-        this.area = new Area(area.getMinPoint(), point);
+        this.area = new Area(this.getSecondPoint(), point);
     }
 
-    public void setUpdateInterval(long delay) {
-        this.updateInterval = delay;
-        this.currentUpdateInterval.set(delay);
+    /**
+     * Set mine update interval
+     * @param interval Interval in seconds
+     */
+    public void setUpdateInterval(long interval) {
+        this.updateInterval = interval;
+        this.currentUpdateInterval.set(interval);
     }
 
+    /**
+     * Get mine level
+     * @return
+     */
     public Level getLevel() {
         return main.getServer().getLevelByName(levelName);
     }
 
+    /**
+     * Get the size of the mine
+     * @return Size
+     */
     public long getSize() {
         return area.getSize();
     }
 
+    /**
+     * Get mine occupancy percentages
+     * @return Percent
+     */
     public double getOccupancyPercent() {
         return Utils.toPercentage(currentSize.get(), 0, this.getSize());
     }
 
+    /**
+     * Get MineBlock from Nukkit block
+     * @param block Block
+     * @return      MineBlock
+     */
     public MineBlock getMineBlock(Block block) {
         for (MineBlock mineBlock : blocks) {
             if (mineBlock.getId() == block.getId() && 
@@ -121,18 +175,34 @@ public class Mine {
         return null;
     }
 
+    /**
+     * Is point in this mine
+     * @param point Point
+     * @return      boolean
+     */
     public boolean isInMine(Point point) {
         return area.isInside(point);
     }
 
+    /**
+     * Get a random block based on the chances
+     * @return MineBlock
+     */
     public MineBlock getBlockWithChance() {
         return Utils.getBlockWithChance(blocks);
     }
 
+    /**
+     * Update mine blocks
+     */
     public void update() {
         this.update(false);
     }
 
+    /**
+     * Update mine blocks
+     * @param silent Do not call MineUpdateEvent
+     */
     public void update(boolean silent) {
         if (main == null) {
             throw new RuntimeException("Mine is not initialized");
@@ -148,7 +218,6 @@ public class Mine {
         if (this.getLevel() == null) return;
         if (this.getLevel().getProvider() == null) return;
         
-        this.updating = true;
         this.currentUpdateInterval.set(updateInterval);
         this.currentSize.set(0);
 
@@ -166,6 +235,10 @@ public class Mine {
         main.getServer().getScheduler().scheduleTask(main, task);
     }
 
+    /**
+     * Remove mine
+     * @return Is removed
+     */
     public boolean remove() {
         return MineManager.remove(this);
     }

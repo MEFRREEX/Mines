@@ -20,10 +20,18 @@ public class MineBlock {
         this.chance = chance;
     }
 
+    /**
+     * Get Nukkit block
+     * @return Block
+     */
     public Block getBlock() {
         return Block.get(id, damage);
     }
 
+    /**
+     * Set block
+     * @param block Block
+     */
     public void setBlock(Block block) {
         this.id = block.getId();
         this.damage = block.getDamage();

@@ -17,24 +17,23 @@ public class EditMineForm {
     public static void sendTo(Player player, Mine mine) {
         SimpleForm form = new SimpleForm(Language.get("form-edit-title"));
         form.addButton(Language.get("form-edit-button-blocks"), (pl, b) -> {
-            MineBlocksForm.sendTo(player, mine);
-        });
-        form.addButton(Language.get("form-edit-button-settings"), (pl, b) -> {
-            EditMineForm.sendToSettings(player, mine);   
-        });
-        form.addButton(Language.get("form-edit-button-teleport-point"), (pl, b) -> {
-            mine.setTeleportPoint(new PointLocation(player));
-            player.sendMessage(Mines.PREFIX_GREEN + Language.get("form-edit-message-teleport-point-set"));
-        });
-        form.addButton(Language.get("form-edit-button-first-point"), (pl, b) -> {
-            mine.setFirstPoint(new Point(player));
-            player.sendMessage(Mines.PREFIX_GREEN + Language.get("form-edit-message-first-point-set"));
-        });
-        form.addButton(Language.get("form-edit-button-second-point"), (pl, b) -> {
-            mine.setSecondPoint(new Point(player));
-            player.sendMessage(Mines.PREFIX_GREEN + Language.get("form-edit-message-second-point-set"));
-        });
-        form.send(player);
+                MineBlocksForm.sendTo(player, mine);
+            })
+            .addButton(Language.get("form-edit-button-settings"), (pl, b) -> {
+                EditMineForm.sendToSettings(player, mine);   
+            })
+            .addButton(Language.get("form-edit-button-teleport-point"), (pl, b) -> {
+                mine.setTeleportPoint(new PointLocation(player));
+                player.sendMessage(Mines.PREFIX_GREEN + Language.get("form-edit-message-teleport-point-set"));
+            })
+            .addButton(Language.get("form-edit-button-first-point"), (pl, b) -> {
+                mine.setFirstPoint(new Point(player));
+                player.sendMessage(Mines.PREFIX_GREEN + Language.get("form-edit-message-first-point-set"));
+            })
+            .addButton(Language.get("form-edit-button-second-point"), (pl, b) -> {
+                mine.setSecondPoint(new Point(player));
+                    player.sendMessage(Mines.PREFIX_GREEN + Language.get("form-edit-message-second-point-set"));
+            }).send(player);
     }
 
     public static void sendToSettings(Player player, Mine mine) {

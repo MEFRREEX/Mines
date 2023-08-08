@@ -16,15 +16,16 @@ public class FirstPosSubCommand extends BaseSubCommand {
 
     @Override
     public boolean execute(CommandSender sender, String commandLabel, String label, String[] args) {
-        if (!testPermission(sender)) {
+        if (!this.testPermission(sender)) {
             sender.sendMessage(Mines.PREFIX_RED + Language.get("command-no-permission"));
             return false;
         }
-        if (!(sender instanceof Player)) {
+        
+        if (!(sender instanceof Player player)) {
             sender.sendMessage(Mines.PREFIX_RED + Language.get("command-in-game"));
             return false;
         }
-        Player player = (Player) sender;
+        
         Mines.getFirstPoints().put(player, new Point(player));
         player.sendMessage(Mines.PREFIX_GREEN + Language.get("subcommand-setpos-pos1"));
         return true;

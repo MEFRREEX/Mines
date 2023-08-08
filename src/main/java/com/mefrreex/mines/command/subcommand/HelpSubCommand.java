@@ -14,14 +14,16 @@ public class HelpSubCommand extends BaseSubCommand {
 
     @Override
     public boolean execute(CommandSender sender, String commandLabel, String label, String[] args) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(Language.get("subcommand-help-available"));
+        StringBuilder builder = new StringBuilder();
+        builder.append(Language.get("subcommand-help-available"));
         for (BaseSubCommand sub : BaseCommand.getSubcommands().values()) {
             if (sub.testPermission(sender)) {
-                sb.append("\n- /" + commandLabel + " " + sub.getName() + " - " + sub.getDescription());
+                String name = sub.getName();
+                String description = Language.get("subcommand-" + name + "-description");
+                builder.append("\n- /" + commandLabel + " " + name + " - " + description);
             }
         }
-        sender.sendMessage(sb.toString());
+        sender.sendMessage(builder.toString());
         return true;
     }
 }

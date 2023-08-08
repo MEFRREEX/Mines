@@ -1,23 +1,35 @@
+# Prefixes
+prefix-green: "&l&a>&r "
+prefix-yellow: "&l&e>&r "
+prefix-red: "&l&c>&r "
+
+# Other
+mine-no-permission: "You don't have a permission for this mine."
+
 # Commands
 command-no-permission: "You cannot use this command!"
-command-player-not-found: "No player found!"
 command-mine-not-found: "A mine by that name does not exist."
 command-mine-already-exists: "A mine by that name already exists."
+command-in-game: "This command can only be used in the game!"
 
 # Sub commands
+subcommand-help-description: "Help"
 subcommand-help-available: "Available sub commands:"
 
+subcommand-pos1-description: "Set first point"
+subcommand-pos2-description: "Set second point"
 subcommand-setpos-pos1: "The first point is set!"
 subcommand-setpos-pos2: "The second point is set!"
 
+subcommand-create-description: "Create a mine"
 subcommand-create-not-found-point1: "Start by setting the first point."
 subcommand-create-not-found-point2: "Start by setting the second point."
 subcommand-create-created: "You have successfully created a new mine!"
 
-subcommand-delete-deleted: "Mine has been removed"
+subcommand-delete-description: "Delete mine"
 
-# Other
-mine-no-permission: "You don't have a permission for this mine."
+subcommand-edit-description: "Edit mine"
+subcommand-list-description: "List of mines"
 
 # Forms
 form-select-title: "Mines"
@@ -29,8 +41,11 @@ form-create-input-name-name: "Name of mine"
 form-create-input-name-placeholder: "Name"
 
 # Delete mine form
-form-delete-title: "Delete mine"
-form-delete-content: "Select the mine to delete"
+form-delete-title: "Confirmation"
+form-delete-content: "Do you really want to delete this mine? This action cannot be undone."
+form-delete-button-confirm: "&cDelete"
+form-delete-button-back: "Back"
+form-delete-message-deleted: "Mine has been removed"
 
 # Edit mine form
 form-edit-title: "Edit mine"
@@ -53,8 +68,8 @@ form-edit-settings-input-world-name: "Mine world"
 form-edit-settings-input-world-placeholder: "World"
 
 form-edit-settings-label-permission: "Permission"
-form-edit-settings-toggle-locked: "Enable permission"
-form-edit-settings-input-permission-name: "Permission &7(Required to enter the mine)"
+form-edit-settings-toggle-locked: "Enable permission &7(Required to enter the mine)"
+form-edit-settings-input-permission-name: "Permission"
 form-edit-settings-input-permission-placeholder: "Permission" 
 
 form-edit-settings-label-auto-update: "Auto update"

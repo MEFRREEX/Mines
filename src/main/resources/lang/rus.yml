@@ -1,0 +1,129 @@
+# Prefixes
+prefix-green: "&l&a>&r "
+prefix-yellow: "&l&e>&r "
+prefix-red: "&l&c>&r "
+
+# Other
+mine-no-permission: "У вас нет разрешения на эту шахту."
+
+# Commands
+command-no-permission: "Эта команда вам недоступна!"
+command-mine-not-found: "Шахта с таким названием не существует."
+command-mine-already-exists: "Шахта с таким названием уже существует."
+command-in-game: "Эта команда может быть использована только в игре!"
+
+# Sub commands
+subcommand-help-description: "Помощь"
+subcommand-help-available: "Доступные команды:"
+
+subcommand-pos1-description: "Установить первую точку"
+subcommand-pos2-description: "Установить вторую точку"
+subcommand-setpos-pos1: "Первая точка установлена!"
+subcommand-setpos-pos2: "Вторая точка установлена!"
+
+subcommand-create-description: "Создать шахту"
+subcommand-create-not-found-point1: "Для начала установите первую точку."
+subcommand-create-not-found-point2: "Для начала установите вторую точку."
+subcommand-create-created: "Вы успешно создали новую шахту!"
+
+subcommand-delete-description: "Удалить шахту"
+
+subcommand-edit-description: "Редактировать шахту"
+subcommand-list-description: "Список шахт"
+
+# Forms
+form-select-title: "Шахты"
+form-select-content: "Выберите шахту" 
+
+# Create mine form
+form-create-title: "Создание шахты"
+form-create-input-name-name: "Название шахты"
+form-create-input-name-placeholder: "Название"
+
+# Delete mine form
+form-delete-title: "Подтверждение"
+form-delete-content: "Вы действительно хотите удалить эту шахту? Это действие нельзя будет отменить."
+form-delete-button-confirm: "&cУдалить"
+form-delete-button-back: "Назад"
+form-delete-message-deleted: "Шахта была удалена"
+
+# Edit mine form
+form-edit-title: "Редактирование шахты"
+form-edit-content: "Редактирование шахты"
+
+form-edit-button-blocks: "Редактировать блоки"
+form-edit-button-settings: "Редактировать настройки"
+form-edit-button-teleport-point: "Установить точку телепортации"
+form-edit-button-first-point: "Установить первую точку"
+form-edit-button-second-point: "Установить вторую точку"
+
+form-edit-message-teleport-point-set: "Вы задали точку телепортации!"
+form-edit-message-first-point-set: "Первая точка установлена!"
+form-edit-message-second-point-set: "Вторая точка установлена!"
+
+# Edit mine settings form
+form-edit-settings-title: "Редактирование настроек шахты"
+
+form-edit-settings-input-world-name: "Мир шахты"
+form-edit-settings-input-world-placeholder: "Мир"
+
+form-edit-settings-label-permission: "Разрешение"
+form-edit-settings-toggle-locked: "Включить разрешение &7(Требуется для входа в шахту)"
+form-edit-settings-input-permission-name: "Разрешение"
+form-edit-settings-input-permission-placeholder: "Разрешение" 
+
+form-edit-settings-label-auto-update: "Автоматическое обновление"
+form-edit-settings-toggle-auto-update: "Включить автоматическое обновление"
+form-edit-settings-input-update-interval-name: "Интервал обновления &7(В секундах)"
+form-edit-settings-input-update-interval-placeholder: "Интервал"
+
+form-edit-settings-label-update-below-percent: "Обновление ниже определенного процента"
+form-edit-settings-toggle-update-below-percent: "Включить обновление ниже процента &7(Шахта будет обновлена, если процент оставшихся блоков будет меньше, чем)"
+form-edit-settings-input-update-percent-name: "Процент"
+form-edit-settings-input-update-percent-placeholder: "Процент"
+
+form-edit-settings-label-parameters: "Параметры"
+form-edit-settings-toggle-safe-update: "Безопасное обновление &7(Если в момент обновления шахты в ней находится игрок, то он будет телепортирован в указанную точку)"
+
+form-edit-settings-message-world-not-found: "Мир не найден."
+form-edit-settings-message-interval-nan: "Интервал обновления должен быть целым положительным числом."
+form-edit-settings-message-update-percent-invalid: "Процент обновления должен быть числом от 0 до 100."
+form-edit-settings-message-edited: "Настройки шахты успешно обновлены!"
+
+# Edit mine blocks form
+form-edit-blocks-title: "Редактирование блоков шахты"
+form-edit-blocks-content: "Блоки шахты"
+
+form-edit-blocks-button-add: "Добавить новый блок"
+form-edit-blocks-button-block: "&l[0]\n&r&7Нажмите, чтобы удалить"
+
+form-edit-blocks-message-removed: "Блок был удален"
+
+# Add new block
+form-blocks-new-block-title: "Добавление нового блока"
+
+form-blocks-new-block-input-id-name: "Идентификатор блока"
+form-blocks-new-block-input-id-placeholder: "Id блока"
+
+form-blocks-new-block-input-damage-name: "Вариант блока"
+form-blocks-new-block-input-damage-placeholder: "Вариант"
+
+form-blocks-new-block-input-chance-name: "Шанс генерации"
+form-blocks-new-block-input-chance-placeholder: "Шанс"
+
+form-blocks-new-block-message-id-nan: "Id должно быть целым числом."
+form-blocks-new-block-message-damage-nan: "Вариант блока должен быть целым числом."
+form-blocks-new-block-message-chance-invalid: "Шанс должен быть числом от 0 до 100."
+form-blocks-new-block-message-added: "Вы успешно добавили блок [0] с шансом [1]."
+
+# Mine action form
+form-action-title: "Действие для шахты"
+form-action-content: "Выберите действие для шахты"
+
+form-action-button-teleport: "Телепортация"
+form-action-button-update: "Обновить блоки"
+form-action-button-edit: "Редактировать"
+form-action-button-delete: "&cУдалить"
+
+form-action-message-teleported: "Вы телепортировались в шахту!"
+form-action-message-updated: "Блоки успешно обновлены!"

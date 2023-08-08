@@ -11,7 +11,6 @@ import com.mefrreex.mines.event.MineRemoveEvent;
 import com.mefrreex.mines.event.MineSaveEvent;
 import com.mefrreex.mines.mine.Mine;
 import com.mefrreex.mines.utils.Point;
-
 import lombok.Getter;
 import lombok.SneakyThrows;
 
@@ -26,15 +25,25 @@ import java.util.Objects;
 
 public class MineManager {
     
-    @Getter
-    private static final Map<Level, List<Mine>> mines = new HashMap<>();
+    /** All mines */
+    private static final @Getter Map<Level, List<Mine>> mines = new HashMap<>();
 
+    /** Gson */
     private static final Gson gson = new Gson();
 
+    /**
+     * Get mines data folder
+     * @return File
+     */
     public static File getMinesFolder() {
         return new File(Mines.get().getDataFolder() + "/mines/");
     }
 
+    /**
+     * Get mine by name
+     * @param name Mine name
+     * @return     Mine
+     */
     public static Mine get(String name) {
         for (List<Mine> mines : MineManager.mines.values()) {
             for (Mine mine : mines) {
@@ -44,15 +53,32 @@ public class MineManager {
         return null;
     }
 
+    /**
+     * Get mines in Level
+     * @param level
+     * @return Mine List
+     */
     public static List<Mine> get(Level level) {
         return mines.get(level);
     }
 
+    /**
+     * Get mines at Position
+     * @param position Position
+     * @return         Mine List
+     */
     public static List<Mine> getMinesAt(Position position) {
         List<Mine> list = new ArrayList<>();
-        for (Mine mine : mines.get(position.getLevel())) {
-            if (mine.isInMine(new Point(position))) list.add(mine);
+        List<Mine> levelMines = mines.get(position.getLevel());
+
+        if (levelMines != null) {
+            for (Mine mine : levelMines) {
+                if (mine.isInMine(new Point(position))) {
+                    list.add(mine);
+                }
+            }
         }
+
         return list;
     }
 
@@ -140,6 +166,7 @@ public class MineManager {
         }
 
         mines.get(mine.getLevel()).remove(mine);
-        return file.delete();
+        file.delete();
+        return true;
     }
 }
