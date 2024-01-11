@@ -215,8 +215,7 @@ public class Mine {
             return;
         }
 
-        if (this.getLevel() == null) return;
-        if (this.getLevel().getProvider() == null) return;
+        if (this.getLevel() == null || this.getLevel().getProvider() == null) return;
         
         this.currentUpdateInterval.set(updateInterval);
         this.currentSize.set(0);
@@ -232,7 +231,7 @@ public class Mine {
         }
 
         UpdateMineTask task = new UpdateMineTask(this);
-        main.getServer().getScheduler().scheduleTask(main, task);
+        main.getServer().getScheduler().scheduleAsyncTask(main, task);
     }
 
     /**

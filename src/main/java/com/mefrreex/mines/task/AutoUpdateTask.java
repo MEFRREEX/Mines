@@ -21,20 +21,20 @@ public class AutoUpdateTask extends Task {
         if (!updateIfNoPlayers && main.getServer().getOnlinePlayers().size() < 1) {
             return;
         }
+
         // Iteration of all mines
         MineManager.getMines().forEach((level, mines) -> {
             // Skip if the level null or closed
-            if (level == null) {
+            if (level == null || level.getProvider() == null) {
                 return;
             }
-            if (level.getProvider() == null) {
-                return;
-            }
+
             // Iteration of all level mines
             for (Mine mine : mines) {
                 if (!mine.isAutoUpdate()) {
                     continue;
                 }
+
                 // Checking the remaining time to update and updating the mine
                 mine.getCurrentUpdateInterval().decrementAndGet();
                 if (mine.getCurrentUpdateInterval().get() < 1) {
@@ -43,5 +43,4 @@ public class AutoUpdateTask extends Task {
             }
         });
     }
-    
 }
