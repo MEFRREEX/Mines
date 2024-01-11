@@ -1,10 +1,9 @@
 package com.mefrreex.mines.form;
 
+import cn.nukkit.Player;
 import com.mefrreex.mines.Mines;
 import com.mefrreex.mines.mine.Mine;
 import com.mefrreex.mines.utils.Language;
-
-import cn.nukkit.Player;
 import ru.contentforge.formconstructor.form.ModalForm;
 
 public class DeleteMineForm {

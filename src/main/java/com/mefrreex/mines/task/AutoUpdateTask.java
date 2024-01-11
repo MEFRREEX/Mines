@@ -3,8 +3,8 @@ package com.mefrreex.mines.task;
 import cn.nukkit.scheduler.Task;
 
 import com.mefrreex.mines.Mines;
-import com.mefrreex.mines.manager.MineManager;
 import com.mefrreex.mines.mine.Mine;
+import com.mefrreex.mines.mine.MineManager;
 
 public class AutoUpdateTask extends Task {
 

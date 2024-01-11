@@ -1,15 +1,14 @@
 package com.mefrreex.mines.form;
 
+import cn.nukkit.Player;
+import com.mefrreex.mines.Mines;
+import com.mefrreex.mines.mine.Mine;
+import com.mefrreex.mines.mine.MineManager;
+import com.mefrreex.mines.utils.Language;
+import ru.contentforge.formconstructor.form.SimpleForm;
+
 import java.util.List;
 import java.util.function.BiConsumer;
-
-import com.mefrreex.mines.Mines;
-import com.mefrreex.mines.manager.MineManager;
-import com.mefrreex.mines.mine.Mine;
-import com.mefrreex.mines.utils.Language;
-
-import cn.nukkit.Player;
-import ru.contentforge.formconstructor.form.SimpleForm;
 
 public class SelectMineForm {
     

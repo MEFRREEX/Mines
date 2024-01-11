@@ -8,8 +8,8 @@ import com.mefrreex.mines.Mines;
 import com.mefrreex.mines.command.BaseSubCommand;
 import com.mefrreex.mines.form.EditMineForm;
 import com.mefrreex.mines.form.SelectMineForm;
-import com.mefrreex.mines.manager.MineManager;
 import com.mefrreex.mines.mine.Mine;
+import com.mefrreex.mines.mine.MineManager;
 import com.mefrreex.mines.utils.Language;
 
 public class EditSubCommand extends BaseSubCommand {

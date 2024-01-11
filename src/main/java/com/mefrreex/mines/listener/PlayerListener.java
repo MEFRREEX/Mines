@@ -6,15 +6,14 @@ import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.player.PlayerMoveEvent;
-
-import java.util.List;
-
 import com.mefrreex.mines.Mines;
 import com.mefrreex.mines.event.MineBlockBreakEvent;
 import com.mefrreex.mines.event.NoMinePermissionEvent;
-import com.mefrreex.mines.manager.MineManager;
 import com.mefrreex.mines.mine.Mine;
+import com.mefrreex.mines.mine.MineManager;
 import com.mefrreex.mines.utils.Language;
+
+import java.util.List;
 
 public class PlayerListener implements Listener {
     

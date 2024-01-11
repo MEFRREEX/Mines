@@ -5,7 +5,7 @@ import cn.nukkit.plugin.PluginBase;
 
 import com.mefrreex.mines.command.BaseCommand;
 import com.mefrreex.mines.listener.PlayerListener;
-import com.mefrreex.mines.manager.MineManager;
+import com.mefrreex.mines.mine.MineManager;
 import com.mefrreex.mines.task.AutoUpdateTask;
 import com.mefrreex.mines.utils.Language;
 import com.mefrreex.mines.utils.Point;

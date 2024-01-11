@@ -2,15 +2,15 @@ package com.mefrreex.mines.form;
 
 import cn.nukkit.Player;
 import cn.nukkit.block.Block;
-import ru.contentforge.formconstructor.form.CustomForm;
-import ru.contentforge.formconstructor.form.element.Input;
 import com.mefrreex.mines.Mines;
-import com.mefrreex.mines.manager.MineManager;
 import com.mefrreex.mines.mine.Mine;
 import com.mefrreex.mines.mine.MineBlock;
+import com.mefrreex.mines.mine.MineManager;
 import com.mefrreex.mines.utils.Area;
 import com.mefrreex.mines.utils.Language;
 import com.mefrreex.mines.utils.Point;
+import ru.contentforge.formconstructor.form.CustomForm;
+import ru.contentforge.formconstructor.form.element.Input;
 
 public class CreateMineForm {
     
