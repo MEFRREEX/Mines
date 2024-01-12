@@ -6,43 +6,48 @@ import com.mefrreex.mines.Mines;
 import com.mefrreex.mines.mine.Mine;
 import com.mefrreex.mines.mine.MineBlock;
 import com.mefrreex.mines.utils.Language;
-import ru.contentforge.formconstructor.form.CustomForm;
-import ru.contentforge.formconstructor.form.SimpleForm;
-import ru.contentforge.formconstructor.form.element.Input;
+import com.formconstructor.form.CustomForm;
+import com.formconstructor.form.SimpleForm;
+import com.formconstructor.form.element.custom.Input;
+import com.formconstructor.form.element.simple.Button;
 
 public class MineBlocksForm {
 
     public static void sendTo(Player player, Mine mine) {
         SimpleForm form = new SimpleForm(Language.get("form-edit-blocks-title"));
         form.addContent(Mines.PREFIX_YELLOW + Language.get("form-edit-blocks-content"));
+
         form.addButton(Language.get("form-edit-blocks-button-add"), (pl, b) -> {
             MineBlocksForm.sendToNew(player, mine);
         });
+
         for (MineBlock block : mine.getBlocks()) {
-            String name = block.getBlock().getName();
-            form.addButton(Language.get("form-edit-blocks-button-block", name), (pl, b) -> {
-                if (mine.getBlocks().contains(block)) mine.getBlocks().remove(block);
-                player.sendMessage(Mines.PREFIX_GREEN + Language.get("form-edit-blocks-message-removed"));
-            });
+            form.addButton(new Button()
+                .setName(block.getBlock().getName())
+                .onClick((pl, b) -> {
+                    mine.getBlocks().removeIf(block::equals);
+                    mine.update();
+                    player.sendMessage(Mines.PREFIX_GREEN + Language.get("form-edit-blocks-message-removed"));
+                }));
         }
+
         form.send(player);
     }
 
     public static void sendToNew(Player player, Mine mine) {
         CustomForm form = new CustomForm(Language.get("form-blocks-new-block-title"));
         
-        form.addElement("id", Input.builder()
+        form.addElement("id", new Input()
                 .setName(Mines.PREFIX_YELLOW + Language.get("form-blocks-new-block-input-id-name"))
-                .setPlaceholder(Language.get("form-blocks-new-block-input-id-placeholder"))
-                .build())
-            .addElement("damage", Input.builder()
+                .setPlaceholder(Language.get("form-blocks-new-block-input-id-placeholder")))
+
+            .addElement("damage", new Input()
                 .setName(Mines.PREFIX_YELLOW + Language.get("form-blocks-new-block-input-damage-name"))
-                .setPlaceholder(Language.get("form-blocks-new-block-input-damage-placeholder"))
-                .build())
-            .addElement("chance", Input.builder()
+                .setPlaceholder(Language.get("form-blocks-new-block-input-damage-placeholder")))
+
+            .addElement("chance", new Input()
                 .setName(Mines.PREFIX_YELLOW + Language.get("form-blocks-new-block-input-chance-name"))
-                .setPlaceholder(Language.get("form-blocks-new-block-input-chance-placeholder"))
-                .build());
+                .setPlaceholder(Language.get("form-blocks-new-block-input-chance-placeholder")));
 
         form.setHandler((pl, response) -> {
             int id;

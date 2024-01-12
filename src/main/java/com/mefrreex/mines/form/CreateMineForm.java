@@ -9,20 +9,21 @@ import com.mefrreex.mines.mine.MineManager;
 import com.mefrreex.mines.utils.Area;
 import com.mefrreex.mines.utils.Language;
 import com.mefrreex.mines.utils.Point;
-import ru.contentforge.formconstructor.form.CustomForm;
-import ru.contentforge.formconstructor.form.element.Input;
+import com.formconstructor.form.CustomForm;
+import com.formconstructor.form.element.custom.Input;
 
 public class CreateMineForm {
     
     public static void sendTo(Player player) {
         CustomForm form = new CustomForm(Language.get("form-create-title"));
-        form.addElement("name", Input.builder()
+
+        form.addElement("name", new Input()
             .setName(Mines.PREFIX_YELLOW + Language.get("form-create-input-name-name"))
-            .setPlaceholder(Language.get("form-create-input-name-placeholder"))
-            .build());
+            .setPlaceholder(Language.get("form-create-input-name-placeholder")));
 
         form.setHandler((pl, response) -> {
             String name = response.getInput("name").getValue();
+            
             if (MineManager.get(name) != null) {
                 player.sendMessage(Mines.PREFIX_RED + Language.get("command-mine-already-exists"));
                 return;
@@ -42,6 +43,7 @@ public class CreateMineForm {
             
             EditMineForm.sendTo(player, mine);
         });
+
         form.send(player);
     }
 }

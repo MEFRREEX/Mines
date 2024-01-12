@@ -7,74 +7,87 @@ import com.mefrreex.mines.mine.Mine;
 import com.mefrreex.mines.utils.Language;
 import com.mefrreex.mines.utils.Point;
 import com.mefrreex.mines.utils.PointLocation;
-import ru.contentforge.formconstructor.form.CustomForm;
-import ru.contentforge.formconstructor.form.SimpleForm;
-import ru.contentforge.formconstructor.form.element.Input;
-import ru.contentforge.formconstructor.form.element.Toggle;
+import com.formconstructor.form.CustomForm;
+import com.formconstructor.form.SimpleForm;
+import com.formconstructor.form.element.custom.Input;
+import com.formconstructor.form.element.custom.Toggle;
+import com.formconstructor.form.element.simple.Button;
 
 public class EditMineForm {
 
     public static void sendTo(Player player, Mine mine) {
         SimpleForm form = new SimpleForm(Language.get("form-edit-title"));
-        form.addButton(Language.get("form-edit-button-blocks"), (pl, b) -> {
-                MineBlocksForm.sendTo(player, mine);
-            })
-            .addButton(Language.get("form-edit-button-settings"), (pl, b) -> {
-                EditMineForm.sendToSettings(player, mine);   
-            })
-            .addButton(Language.get("form-edit-button-teleport-point"), (pl, b) -> {
-                mine.setTeleportPoint(new PointLocation(player));
-                player.sendMessage(Mines.PREFIX_GREEN + Language.get("form-edit-message-teleport-point-set"));
-            })
-            .addButton(Language.get("form-edit-button-first-point"), (pl, b) -> {
-                mine.setFirstPoint(new Point(player));
-                player.sendMessage(Mines.PREFIX_GREEN + Language.get("form-edit-message-first-point-set"));
-            })
-            .addButton(Language.get("form-edit-button-second-point"), (pl, b) -> {
-                mine.setSecondPoint(new Point(player));
+
+        form.addButton(new Button()
+                .setName(Language.get("form-edit-button-blocks"))
+                .onClick((pl, b) -> MineBlocksForm.sendTo(player, mine)))
+
+            .addButton(new Button()
+                .setName(Language.get("form-edit-button-settings"))
+                .onClick((pl, b) -> EditMineForm.sendToSettings(player, mine)))
+
+            .addButton(new Button()
+                .setName(Language.get("form-edit-button-teleport-point"))
+                .onClick((pl, b) -> {
+                    mine.setTeleportPoint(new PointLocation(player));
+                    player.sendMessage(Mines.PREFIX_GREEN + Language.get("form-edit-message-teleport-point-set"));
+                }))
+
+            .addButton(new Button()
+                .setName(Language.get("form-edit-button-first-point"))
+                .onClick((pl, b) -> {
+                    mine.setFirstPoint(new Point(player));
+                    player.sendMessage(Mines.PREFIX_GREEN + Language.get("form-edit-message-first-point-set"));
+                }))
+
+            .addButton(new Button()
+                .setName(Language.get("form-edit-button-second-point"))
+                .onClick((pl, b) -> {
+                    mine.setSecondPoint(new Point(player));
                     player.sendMessage(Mines.PREFIX_GREEN + Language.get("form-edit-message-second-point-set"));
-            }).send(player);
+                }));
+            
+        form.send(player);
     }
 
     public static void sendToSettings(Player player, Mine mine) {
         CustomForm form = new CustomForm(Language.get("form-edit-settings-title"));
-        form.addElement("world", Input.builder()
+        form.addElement("world", new Input()
                 .setName(Mines.PREFIX_YELLOW + Language.get("form-edit-settings-input-world-name"))
                 .setPlaceholder(Language.get("form-edit-settings-input-world-placeholder"))
-                .setDefaultValue(mine.getLevelName())
-                .build())
+                .setDefaultValue(mine.getLevelName()))
 
             .addElement("\n" + Mines.PREFIX_YELLOW + Language.get("form-edit-settings-label-permission"))
             .addElement("locked", new Toggle(Language.get("form-edit-settings-toggle-locked"), mine.isLocked()))
-            .addElement("permission", Input.builder()
+            
+            .addElement("permission", new Input()
                 .setName(Language.get("form-edit-settings-input-permission-name"))
                 .setPlaceholder(Language.get("form-edit-settings-input-permission-placeholder"))
-                .setDefaultValue(mine.getPermission() != null ? String.valueOf(mine.getPermission()) : "mine.permission." + mine.getName())
-                .build())
+                .setDefaultValue(mine.getPermission() != null ? String.valueOf(mine.getPermission()) : "mine.permission." + mine.getName()))
 
             .addElement("\n" + Mines.PREFIX_YELLOW + Language.get("form-edit-settings-label-auto-update"))
             .addElement("autoUpdate", new Toggle(Language.get("form-edit-settings-toggle-auto-update"), mine.isAutoUpdate()))
-            .addElement("updateInterval", Input.builder()
+            
+            .addElement("updateInterval", new Input()
                 .setName(Language.get("form-edit-settings-input-update-interval-name"))
                 .setPlaceholder(Language.get("form-edit-settings-input-update-interval-placeholder"))
-                .setDefaultValue(String.valueOf(mine.getUpdateInterval()))
-                .build())
+                .setDefaultValue(String.valueOf(mine.getUpdateInterval())))
             
             .addElement("\n" + Mines.PREFIX_YELLOW + Language.get("form-edit-settings-label-update-below-percent"))
             .addElement("updateBelowPercent", new Toggle(Language.get("form-edit-settings-toggle-update-below-percent"), mine.isUpdateBelowPercent()))
-            .addElement("updatePercent", Input.builder()
+            
+            .addElement("updatePercent", new Input()
                 .setName(Language.get("form-edit-settings-input-update-percent-name"))
                 .setPlaceholder(Language.get("form-edit-settings-input-update-percent-placeholder"))
-                .setDefaultValue(String.valueOf(mine.getUpdatePercent()))
-                .build())
+                .setDefaultValue(String.valueOf(mine.getUpdatePercent())))
 
             .addElement("\n" + Mines.PREFIX_YELLOW + Language.get("form-edit-settings-label-parameters"))
             .addElement("safeUpdate", new Toggle(Language.get("form-edit-settings-toggle-safe-update"), mine.isSafeUpdate()));
 
         form.setHandler((pl, response) -> {
             // World
-            String levelName = response.getInput("world").getValue();
-            if (Server.getInstance().getLevelByName(levelName) == null) {
+            String world = response.getInput("world").getValue();
+            if (Server.getInstance().getLevelByName(world) == null) {
                 player.sendMessage(Mines.PREFIX_RED + Language.get("form-edit-settings-message-world-not-found"));
                 return;
             }
@@ -114,7 +127,7 @@ public class EditMineForm {
             // Parameters
             boolean safeUpdate = response.getToggle("safeUpdate").getValue();
             
-            mine.setLevelName(levelName);
+            mine.setLevelName(world);
             mine.setLocked(locked);
             mine.setPermission(permission);
             mine.setAutoUpdate(autoUpdate);
