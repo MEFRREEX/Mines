@@ -1,0 +1,131 @@
+# Autor de la localización Rakilem
+
+# Prefijos​
+prefijo-verde: "&l&a>&r "
+prefijo-amarillo: "&l&e>&r "
+prefijo-rojo: "&l&c>&r "
+
+# Otros​
+mine-no-permission: "No tienes permiso para esta mina."
+
+# Comandos​
+command-no-permission: "¡No puedes usar este comando!"
+command-mine-not-found: "Una mina con ese nombre no existe."
+command-mine-already-exists: "Ya existe una mina con ese nombre."
+command-in-game: "Este comando solo se puede usar en el juego!"
+
+# Sub comandos​
+subcommand-help-description: "Ayuda"
+subcommand-help-available: "Sub comandos disponibles:"
+
+subcommand-pos1-description: "Establecer primer punto"
+subcommand-pos2-description: "Establecer segundo punto"
+subcommand-setpos-pos1: "¡Se ha establecido el primer punto!"
+subcommand-setpos-pos2: "¡Se ha establecido el segundo punto!"
+
+subcommand-create-description: "Crear una mina"
+subcommand-create-not-found-point1: "Comienza estableciendo el primer punto."
+subcommand-create-not-found-point2: "Comienza estableciendo el segundo punto."
+subcommand-create-created: "Has creado con éxito una nueva mina."
+
+subcommand-delete-description: "Eliminar mina"
+
+subcommand-edit-description: "Editar mina"
+subcommand-list-description: "Lista de minas"
+
+# Formularios​
+form-select-title: "Minas"
+form-select-content: "Selecciona una mina"
+
+# Formulario de creación de mina​
+form-create-title: "Crear una mina"
+form-create-input-name-name: "Nombre de la mina"
+form-create-input-name-placeholder: "Nombre"
+
+# Formulario de eliminación de mina​
+form-delete-title: "Confirmación"
+form-delete-content: "¿Realmente deseas eliminar esta mina? Esta acción no se puede deshacer."
+form-delete-button-confirm: "&cEliminar"
+form-delete-button-back: "Atrás"
+form-delete-message-deleted: "La mina ha sido eliminada"
+
+# Formulario de edición de mina​
+form-edit-title: "Editar mina"
+form-edit-content: "Editar mina"
+
+form-edit-button-blocks: "Editar bloques"
+form-edit-button-settings: "Editar ajustes"
+form-edit-button-teleport-point: "Establecer punto de teletransportación"
+form-edit-button-first-point: "Establecer primer punto"
+form-edit-button-second-point: "Establecer segundo punto"
+
+form-edit-message-teleport-point-set: "¡Has establecido un punto de teletransportación!"
+form-edit-message-first-point-set: "¡Se ha establecido el primer punto!"
+form-edit-message-second-point-set: "¡Se ha establecido el segundo punto!"
+
+# Formulario de edición de ajustes de mina​
+form-edit-settings-title: "Editar ajustes de la mina"
+
+form-edit-settings-input-world-name: "Mundo de la mina"
+form-edit-settings-input-world-placeholder: "Mundo"
+
+form-edit-settings-label-permission: "Permiso"
+form-edit-settings-toggle-locked: "Habilitar permiso &7(Requerido para entrar en la mina)"
+form-edit-settings-input-permission-name: "Permiso"
+form-edit-settings-input-permission-placeholder: "Permiso"
+
+form-edit-settings-label-auto-update: "Actualización automática"
+form-edit-settings-toggle-auto-update: "Habilitar actualización automática"
+form-edit-settings-input-update-interval-name: "Intervalo de actualización &7(En segundos)"
+form-edit-settings-input-update-interval-placeholder: "Intervalo"
+
+form-edit-settings-label-update-below-percent: "Actualizar porcentaje inferior"
+form-edit-settings-toggle-update-below-percent: "Habilitar actualizar porcentaje inferior &7(La mina se actualizará si el porcentaje de bloques restantes es inferior a)"​
+form-edit-settings-input-update-percent-name: "Porcentaje de actualización"
+form-edit-settings-input-update-percent-placeholder: "Porcentaje"
+
+form-edit-settings-label-parameters: "Parámetros"
+form-edit-settings-toggle-safe-update: "Actualización segura &7(Si hay un jugador en la mina cuando se actualiza, será teletransportado al punto especificado)"​
+
+form-edit-settings-message-world-not-found: "No se encontró el mundo."
+form-edit-settings-message-interval-nan: "El intervalo de actualización debe ser un número entero positivo."
+form-edit-settings-message-update-percent-invalid: "El porcentaje de actualización debe ser un número entre 0 y 100."
+form-edit-settings-message-edited: "Los ajustes de la mina se han actualizado con éxito."
+
+# Formulario de edición de bloques de mina​
+form-edit-blocks-title: "Editar bloques de la mina"
+form-edit-blocks-content: "Bloques de la mina"
+
+form-edit-blocks-button-add: "Agregar bloque"
+form-edit-blocks-button-block: "&l[0]\n&r&7Haz clic para eliminar"
+
+form-edit-blocks-message-removed: "El bloque ha sido eliminado"
+
+# Formulario de añadir nuevo bloque​
+form-blocks-new-block-title: "Agregar nuevo bloque"
+
+form-blocks-new-block-input-id-name: "Id del bloque"
+form-blocks-new-block-input-id-placeholder: "Id"
+
+form-blocks-new-block-input-damage-name: "Daño del bloque"
+form-blocks-new-block-input-damage-placeholder: "Daño"
+
+form-blocks-new-block-input-chance-name: "Probabilidad de generación"
+form-blocks-new-block-input-chance-placeholder: "Probabilidad"
+
+form-blocks-new-block-message-id-nan: "La Id debe ser un número entero."
+form-blocks-new-block-message-damage-nan: "El daño debe ser un número entero."
+form-blocks-new-block-message-chance-invalid: "La probabilidad debe ser un número entre 0 y 100."
+form-blocks-new-block-message-added: "Has agregado con éxito el bloque [0] con una probabilidad de [1]."
+
+# Formulario de acción de mina​
+form-action-title: "Acción para la mina"
+form-action-content: "Selecciona una acción para la mina"
+
+form-action-button-teleport: "Teletransportar"
+form-action-button-update: "Actualizar bloques"
+form-action-button-edit: "Editar"
+form-action-button-delete: "&cEliminar"
+
+form-action-message-teleported: "¡Te has teletransportado a la mina!"
+form-action-message-updated: "¡Bloques actualizados con éxito!"
