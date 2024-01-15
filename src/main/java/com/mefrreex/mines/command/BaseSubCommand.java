@@ -6,6 +6,7 @@ import cn.nukkit.lang.TranslationContainer;
 import io.netty.util.internal.EmptyArrays;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.util.LinkedList;
 
 @Getter @Setter
@@ -19,13 +20,16 @@ public abstract class BaseSubCommand {
 
     private String permission = "";
 
-    protected BaseSubCommand(String name) {
-        this(name, name);
+    private BaseCommand command;
+
+    protected BaseSubCommand(String name, BaseCommand command) {
+        this(name, name, command);
     }
 
-    protected BaseSubCommand(String name, String description) {
+    protected BaseSubCommand(String name, String description, BaseCommand command) {
         this.name = name.toLowerCase();
         this.description = description;
+        this.command = command;
     }
 
     public final CommandParameter[] getCommandParameters() {

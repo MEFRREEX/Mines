@@ -5,6 +5,7 @@ import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.data.CommandParamType;
 import cn.nukkit.command.data.CommandParameter;
 import com.mefrreex.mines.Mines;
+import com.mefrreex.mines.command.BaseCommand;
 import com.mefrreex.mines.command.BaseSubCommand;
 import com.mefrreex.mines.form.DeleteMineForm;
 import com.mefrreex.mines.form.SelectMineForm;
@@ -14,10 +15,10 @@ import com.mefrreex.mines.utils.Language;
 
 public class DeleteSubCommand extends BaseSubCommand {
 
-    public DeleteSubCommand() {
-        super("delete", "Delete mine");
+    public DeleteSubCommand(BaseCommand command) {
+        super("delete", "Delete mine", command);
         this.setPermission(Mines.PERMISSION_ADMIN);
-        this.parameters.add(CommandParameter.newType("name", true, CommandParamType.TEXT));
+        this.getParameters().add(CommandParameter.newType("name", true, CommandParamType.TEXT));
     }
 
     @Override
@@ -34,17 +35,17 @@ public class DeleteSubCommand extends BaseSubCommand {
 
         if (args.length > 0) {
             Mine mine = MineManager.get(args[0]);
+
             if (mine == null) {
                 player.sendMessage(Mines.PREFIX_RED + Language.get("command-mine-not-found"));
                 return false;
             }
+
             DeleteMineForm.sendTo(player, mine);
             return true;
         }
 
-        SelectMineForm.sendTo(player, (pl, mine) -> {
-            DeleteMineForm.sendTo(pl, mine);
-        });
+        SelectMineForm.sendTo(player, (pl, mine) -> DeleteMineForm.sendTo(pl, mine));
         return true;
     } 
 }

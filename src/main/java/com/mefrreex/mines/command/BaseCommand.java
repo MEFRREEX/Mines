@@ -1,28 +1,22 @@
 package com.mefrreex.mines.command;
 
-import cn.nukkit.Server;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.data.CommandParameter;
 import cn.nukkit.lang.TranslationContainer;
-import com.mefrreex.mines.Mines;
-import com.mefrreex.mines.command.subcommand.*;
-
 import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-
-public class BaseCommand extends Command {
+public abstract class BaseCommand extends Command {
 
     @Getter
-    private static final Map<String, BaseSubCommand> subcommands = new HashMap<>();
+    private final Map<String, BaseSubCommand> subcommands = new HashMap<>();
 
-    public BaseCommand() {
-        super("mine", "Mines");
-        this.setPermission(Mines.PERMISSION_ADMIN);
+    public BaseCommand(String name, String description) {
+        super(name, description);
         this.commandParameters.clear();
     }
 
@@ -35,46 +29,42 @@ public class BaseCommand extends Command {
                 return command.execute(sender, label, name, Arrays.copyOfRange(args, 1, args.length));
             }
         }
-        sender.sendMessage(new TranslationContainer("commands.generic.usage", "/" + label + " help"));
+        this.executeDefault(sender, label);
         return false;
     }
+
+    public abstract boolean executeDefault(CommandSender sender, String label);  
     
-    public void registerSubCommand(BaseSubCommand subcommand) {
+    public final void sendUsage(CommandSender sender, String usage) {
+        sender.sendMessage(new TranslationContainer("commands.generic.usage", usage));
+    }
+
+    public void addSubCommand(BaseSubCommand subcommand) {
 		subcommands.put(subcommand.getName(), subcommand);
         for (String alias : subcommand.getAliases()) {
             subcommands.put(alias, subcommand);
         }
 	}
 
-    public void register() {
-        BaseSubCommand[] subcommands = {
-            new CreateSubCommand(),
-            new DeleteSubCommand(),
-            new EditSubCommand(),
-            new ListSubCommand(),
-            new FirstPosSubCommand(),
-            new SecondPosSubCommand(),
-            new HelpSubCommand()
-        };
-        this.registerSubCommands(subcommands);
-        Server.getInstance().getCommandMap().register("Mines", this);
+    public void registerSubCommand(BaseSubCommand command) {
+        this.addSubCommand(command);
+
+        int length = command.getCommandParameters().length + 1;
+        CommandParameter[] parameters = new CommandParameter[length];
+        parameters[0] = CommandParameter.newEnum(command.getName(), false, new String[]{command.getName()});
+
+        int i = 1;
+        for (CommandParameter param : command.getCommandParameters()) {
+            parameters[i] = param;
+            i++;
+        }
+
+        this.commandParameters.put(command.getName(), parameters);
     }
 
     public void registerSubCommands(BaseSubCommand[] subcommands) {
         for (BaseSubCommand command : subcommands) {
             this.registerSubCommand(command);
-
-            int length = command.getCommandParameters().length + 1;
-            CommandParameter[] parameters = new CommandParameter[length];
-            parameters[0] = CommandParameter.newEnum(command.getName(), false, new String[]{command.getName()});
-
-            int i = 1;
-            for (CommandParameter param : command.getCommandParameters()) {
-                parameters[i] = param;
-                i++;
-            }
-
-            this.commandParameters.put(command.getName(), parameters);
         }
     }
 }

@@ -2,14 +2,12 @@ package com.mefrreex.mines;
 
 import cn.nukkit.Player;
 import cn.nukkit.plugin.PluginBase;
-
-import com.mefrreex.mines.command.BaseCommand;
+import com.mefrreex.mines.command.MineCommand;
 import com.mefrreex.mines.listener.PlayerListener;
 import com.mefrreex.mines.mine.MineManager;
 import com.mefrreex.mines.task.AutoUpdateTask;
 import com.mefrreex.mines.utils.Language;
 import com.mefrreex.mines.utils.Point;
-
 import lombok.Getter;
 
 import java.util.HashMap;
@@ -38,8 +36,8 @@ public class Mines extends PluginBase {
     public void onEnable() {
         this.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         this.getServer().getScheduler().scheduleRepeatingTask(this, new AutoUpdateTask(this), 20);
-        new BaseCommand().register();
         Language.loadAll(this);
+        MineCommand.register();
         MineManager.loadAll();
         this.initPrefixes();
     }

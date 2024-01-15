@@ -3,14 +3,15 @@ package com.mefrreex.mines.command.subcommand;
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
 import com.mefrreex.mines.Mines;
+import com.mefrreex.mines.command.BaseCommand;
 import com.mefrreex.mines.command.BaseSubCommand;
 import com.mefrreex.mines.utils.Language;
 import com.mefrreex.mines.utils.Point;
 
 public class SecondPosSubCommand extends BaseSubCommand {
 
-    public SecondPosSubCommand() {
-        super("pos2", "Set the points to create the mine");
+    public SecondPosSubCommand(BaseCommand command) {
+        super("pos2", "Set the points to create the mine", command);
         this.setPermission(Mines.PERMISSION_ADMIN);
     }
 

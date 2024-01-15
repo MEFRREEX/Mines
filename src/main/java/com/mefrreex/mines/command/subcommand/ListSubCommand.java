@@ -3,6 +3,7 @@ package com.mefrreex.mines.command.subcommand;
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
 import com.mefrreex.mines.Mines;
+import com.mefrreex.mines.command.BaseCommand;
 import com.mefrreex.mines.command.BaseSubCommand;
 import com.mefrreex.mines.form.MineActionForm;
 import com.mefrreex.mines.form.SelectMineForm;
@@ -10,8 +11,8 @@ import com.mefrreex.mines.utils.Language;
 
 public class ListSubCommand extends BaseSubCommand {
 
-    public ListSubCommand() {
-        super("list", "List of mines");
+    public ListSubCommand(BaseCommand command) {
+        super("list", "List of mines", command);
         this.setPermission(Mines.PERMISSION_ADMIN);
     }
 
