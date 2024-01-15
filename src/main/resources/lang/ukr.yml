@@ -1,0 +1,131 @@
+# Автор локалізації MEFRREEX
+
+# Префікси
+prefix-green: "&l&a>&r "
+prefix-yellow: "&l&e>&r "
+prefix-red: "&l&c>&r "
+
+# Інше
+mine-no-permission: "У вас немає дозволу на цю шахту."
+
+# Команди
+command-no-permission: "Ця команда вам недоступна!"
+command-mine-not-found: "Шахта з такою назвою не існує."
+command-mine-already-exists: "Шахта з такою назвою вже існує."
+command-in-game: "Цю команду можна використовувати тільки в грі!"
+
+# Підкоманди
+subcommand-help-description: "Допомога"
+subcommand-help-available: "Доступні команди:"
+
+subcommand-pos1-description: "Встановити першу точку"
+subcommand-pos2-description: "Встановити другу точку"
+subcommand-setpos-pos1: "Перша точка встановлена!"
+subcommand-setpos-pos2: "Друга точка встановлена!"
+
+subcommand-create-description: "Створити шахту"
+subcommand-create-not-found-point1: "Спочатку встановіть першу точку."
+subcommand-create-not-found-point2: "Спочатку встановіть другу точку."
+subcommand-create-created: "Ви успішно створили нову шахту!"
+
+subcommand-delete-description: "Видалити шахту"
+
+subcommand-edit-description: "Редагувати шахту"
+subcommand-list-description: "Список шахт"
+
+# Форми
+form-select-title: "Шахти"
+form-select-content: "Оберіть шахту" 
+
+# Форма створення шахти
+form-create-title: "Створення шахти"
+form-create-input-name-name: "Назва шахти"
+form-create-input-name-placeholder: "Назва"
+
+# Форма видалення шахти
+form-delete-title: "Підтвердження"
+form-delete-content: "Ви дійсно хочете видалити цю шахту? Цю дію не можна буде скасувати."
+form-delete-button-confirm: "&cВидалити"
+form-delete-button-back: "Назад"
+form-delete-message-deleted: "Шахта була видалена"
+
+# Форма редагування шахти
+form-edit-title: "Редагування шахти"
+form-edit-content: "Редагування шахти"
+
+form-edit-button-blocks: "Редагувати блоки"
+form-edit-button-settings: "Редагувати налаштування"
+form-edit-button-teleport-point: "Встановити точку телепортації"
+form-edit-button-first-point: "Встановити першу точку"
+form-edit-button-second-point: "Встановити другу точку"
+
+form-edit-message-teleport-point-set: "Ви встановили точку телепортації!"
+form-edit-message-first-point-set: "Перша точка встановлена!"
+form-edit-message-second-point-set: "Друга точка встановлена!"
+
+# Форма редагування налаштувань шахти
+form-edit-settings-title: "Редагування налаштувань шахти"
+
+form-edit-settings-input-world-name: "Світ шахти"
+form-edit-settings-input-world-placeholder: "Світ"
+
+form-edit-settings-label-permission: "Дозвіл"
+form-edit-settings-toggle-locked: "Увімкнути дозвіл &7(Потрібен для входу в шахту)"
+form-edit-settings-input-permission-name: "Дозвіл"
+form-edit-settings-input-permission-placeholder: "Дозвіл" 
+
+form-edit-settings-label-auto-update: "Автоматичне оновлення"
+form-edit-settings-toggle-auto-update: "Увімкнути автоматичне оновлення"
+form-edit-settings-input-update-interval-name: "Інтервал оновлення &7(У секундах)"
+form-edit-settings-input-update-interval-placeholder: "Інтервал"
+
+form-edit-settings-label-update-below-percent: "Оновлення нижче визначеного відсотка"
+form-edit-settings-toggle-update-below-percent: "Увімкнути оновлення нижче відсотка &7(Шахта буде оновлена, якщо відсоток залишених блоків буде менше, ніж)"
+form-edit-settings-input-update-percent-name: "Відсоток"
+form-edit-settings-input-update-percent-placeholder: "Відсоток"
+
+form-edit-settings-label-parameters: "Параметри"
+form-edit-settings-toggle-safe-update: "Безпечне оновлення &7(Якщо в момент оновлення шахти в ній знаходиться гравець, то його телепортує в зазначену точку)"
+
+form-edit-settings-message-world-not-found: "Світ не знайдено."
+form-edit-settings-message-interval-nan: "Інтервал оновлення повинен бути цілим додатнім числом."
+form-edit-settings-message-update-percent-invalid: "Відсоток оновлення повинен бути числом від 0 до 100."
+form-edit-settings-message-edited: "Налаштування шахти успішно оновлені!"
+
+# Форма редагування блоків шахти
+form-edit-blocks-title: "Редагування блоків шахти"
+form-edit-blocks-content: "Блоки шахти"
+
+form-edit-blocks-button-add: "Додати новий блок"
+form-edit-blocks-button-block: "&l[0]\n&r&7Натисніть, щоб видалити"
+
+form-edit-blocks-message-removed: "Блок був видалений"
+
+# Форма додавання нового блоку
+form-blocks-new-block-title: "Додавання нового блоку"
+
+form-blocks-new-block-input-id-name: "Ідентифікатор блоку"
+form-blocks-new-block-input-id-placeholder: "Id блоку"
+
+form-blocks-new-block-input-damage-name: "Варіант блоку"
+form-blocks-new-block-input-damage-placeholder: "Варіант"
+
+form-blocks-new-block-input-chance-name: "Шанс генерації"
+form-blocks-new-block-input-chance-placeholder: "Шанс"
+
+form-blocks-new-block-message-id-nan: "Id повинно бути цілим числом."
+form-blocks-new-block-message-damage-nan: "Варіант блоку повинен бути цілим числом."
+form-blocks-new-block-message-chance-invalid: "Шанс повинен бути числом від 0 до 100."
+form-blocks-new-block-message-added: "Ви успішно додали блок [0] з шансом [1]."
+
+# Форма дій для шахти
+form-action-title: "Дія для шахти"
+form-action-content: "Виберіть дію для шахти"
+
+form-action-button-teleport: "Телепортація"
+form-action-button-update: "Оновити блоки"
+form-action-button-edit: "Редагувати"
+form-action-button-delete: "&cВидалити"
+
+form-action-message-teleported: "Ви телепортувались в шахту!"
+form-action-message-updated: "Блоки успішно оновлені!"
