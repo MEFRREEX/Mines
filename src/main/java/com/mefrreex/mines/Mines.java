@@ -54,7 +54,7 @@ public class Mines extends PluginBase {
     }
 
     /* Instance */
-    public static Mines get() {
+    public static Mines getInstance() {
         return instance;
     }
 }

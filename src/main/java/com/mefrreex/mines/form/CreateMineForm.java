@@ -37,7 +37,7 @@ public class CreateMineForm {
             mine.setArea(new Area(point1, point2));
             mine.setLevelName(pl.getLevel().getName());
 
-            mine.init(Mines.get());
+            mine.init(Mines.getInstance());
             mine.update();
             player.sendMessage(Mines.PREFIX_GREEN + Language.get("subcommand-create-created"));
             

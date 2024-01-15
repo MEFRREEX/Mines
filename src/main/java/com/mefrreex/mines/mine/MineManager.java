@@ -35,7 +35,7 @@ public class MineManager {
      * @return File
      */
     public static File getMinesFolder() {
-        return new File(Mines.get().getDataFolder() + "/mines/");
+        return new File(Mines.getInstance().getDataFolder() + "/mines/");
     }
 
     /**
@@ -96,7 +96,7 @@ public class MineManager {
             return false;
         }
 
-        mine.init(Mines.get());
+        mine.init(Mines.getInstance());
         return true;
     }
 

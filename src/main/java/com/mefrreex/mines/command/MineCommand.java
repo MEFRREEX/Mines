@@ -38,7 +38,7 @@ public class MineCommand extends BaseCommand {
     }
     
     public static void register() {
-        MineCommand command = new MineCommand("mine", Mines.get());
+        MineCommand command = new MineCommand("mine", Mines.getInstance());
         Server.getInstance().getCommandMap().register("Mines", command);
     }
 }
