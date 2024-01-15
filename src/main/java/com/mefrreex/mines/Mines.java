@@ -8,6 +8,8 @@ import com.mefrreex.mines.mine.MineManager;
 import com.mefrreex.mines.task.AutoUpdateTask;
 import com.mefrreex.mines.utils.Language;
 import com.mefrreex.mines.utils.Point;
+import com.mefrreex.mines.utils.metrics.MetricsLoader;
+
 import lombok.Getter;
 
 import java.util.HashMap;
@@ -39,12 +41,18 @@ public class Mines extends PluginBase {
         Language.loadAll(this);
         MineCommand.register();
         MineManager.loadAll();
+        this.loadMetrics();
         this.initPrefixes();
     }
 
     @Override
     public void onDisable() {
         MineManager.saveAll();
+    }
+
+    private void loadMetrics() {
+        MetricsLoader metrics = new MetricsLoader();
+        metrics.addCustomMetrics();
     }
 
     private void initPrefixes() {
