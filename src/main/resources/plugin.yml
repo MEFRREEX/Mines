@@ -4,6 +4,9 @@ author: MEFRREEX
 api: ["1.0.13"]
 main: com.mefrreex.mines.Mines
 
+softdepend:
+  - PlaceholderAPI
+
 depend:
   - FormConstructor
 

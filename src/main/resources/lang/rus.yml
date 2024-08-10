@@ -33,6 +33,20 @@ subcommand-delete-description: "Удалить шахту"
 subcommand-edit-description: "Редактировать шахту"
 subcommand-list-description: "Список шахт"
 
+# Форматтер времени
+time-form-day: "день"
+time-form-days: "дня"
+time-form-many-days: "дней"
+time-form-hour: "час"
+time-form-hours: "часа"
+time-form-many-hours: "часов"
+time-form-minute: "минута"
+time-form-minutes: "минуты"
+time-form-many-minutes: "минут"
+time-form-second: "секунда"
+time-form-seconds: "секунды"
+time-form-many-seconds: "секунд"
+
 # Формы
 form-select-title: "Шахты"
 form-select-content: "Выберите шахту" 

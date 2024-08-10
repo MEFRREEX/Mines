@@ -33,6 +33,20 @@ subcommand-delete-description: "Eliminar mina"
 subcommand-edit-description: "Editar mina"
 subcommand-list-description: "Lista de minas"
 
+# Time Formatter
+time-form-day: "day"
+time-form-days: "days"
+time-form-many-days: "days"
+time-form-hour: "hour"
+time-form-hours: "hours"
+time-form-many-hours: "hours"
+time-form-minute: "minute"
+time-form-minutes: "minutes"
+time-form-many-minutes: "minutes"
+time-form-second: "second"
+time-form-seconds: "seconds"
+time-form-many-seconds: "seconds"
+
 # Formularios​
 form-select-title: "Minas"
 form-select-content: "Selecciona una mina"

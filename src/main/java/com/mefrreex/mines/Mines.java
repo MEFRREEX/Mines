@@ -4,6 +4,7 @@ import cn.nukkit.Player;
 import cn.nukkit.plugin.PluginBase;
 import com.mefrreex.mines.command.MineCommand;
 import com.mefrreex.mines.listener.PlayerListener;
+import com.mefrreex.mines.placeholder.PlaceholderRegistry;
 import com.mefrreex.mines.service.MineService;
 import com.mefrreex.mines.service.MineServiceImpl;
 import com.mefrreex.mines.task.AutoUpdateTask;
@@ -25,6 +26,7 @@ public class Mines extends PluginBase {
     private static final @Getter HashMap<Player, Point> secondPoints = new HashMap<>();
 
     private MineService mineService;
+    private PlaceholderRegistry placeholderRegistry;
 
     public static String PREFIX_RED;
     public static String PREFIX_YELLOW;
@@ -50,6 +52,7 @@ public class Mines extends PluginBase {
         this.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         this.getServer().getScheduler().scheduleRepeatingTask(this, new AutoUpdateTask(this), 20);
 
+        this.loadPlaceholders();
         this.loadMetrics();
         this.initPrefixes();
     }
@@ -57,6 +60,13 @@ public class Mines extends PluginBase {
     @Override
     public void onDisable() {
         this.mineService.saveMines();
+    }
+
+    private void loadPlaceholders() {
+        if (this.getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            this.placeholderRegistry = new PlaceholderRegistry();
+            this.placeholderRegistry.init();
+        }
     }
 
     private void loadMetrics() {
