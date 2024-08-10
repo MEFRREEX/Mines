@@ -5,8 +5,8 @@ import cn.nukkit.Server;
 import cn.nukkit.block.Block;
 import cn.nukkit.level.Level;
 import com.mefrreex.mines.Mines;
-import com.mefrreex.mines.event.MineInitEvent;
 import com.mefrreex.mines.event.MineUpdateEvent;
+import com.mefrreex.mines.service.MineService;
 import com.mefrreex.mines.task.UpdateMineTask;
 import com.mefrreex.mines.utils.Area;
 import com.mefrreex.mines.utils.Point;
@@ -49,7 +49,6 @@ public class Mine {
     private transient AtomicLong currentSize;
     
     private transient boolean updating;
-    private transient boolean initialized;
 
     public Mine(String name) {
         this(name, null);
@@ -58,30 +57,6 @@ public class Mine {
     public Mine(String name, Area area) {
         this.name = name;
         this.area = area;
-    }
-
-    /**
-     * Init mine
-     * @return Mines instance
-     */
-    public boolean init() {
-        if (this.initialized) {
-            throw new RuntimeException("Mine already initialized");
-        }
-
-        MineInitEvent event = new MineInitEvent(this);
-        Server.getInstance().getPluginManager().callEvent(event);
-
-        if (event.isCancelled()) {
-            return false;
-        }
-
-        this.currentUpdateInterval = new AtomicLong(updateInterval);
-        this.currentSize = new AtomicLong(0);
-        this.initialized = true;
-        MineManager.getMines().computeIfAbsent(getLevel(), mines -> new ArrayList<>()).add(this);
-        return true;
-
     }
 
     /**
@@ -193,10 +168,6 @@ public class Mine {
      * @param silent Do not call MineUpdateEvent
      */
     public void update(boolean silent) {
-        if (!this.initialized) {
-            throw new RuntimeException("Mine is not initialized");
-        }
-
         MineUpdateEvent event = new MineUpdateEvent(this);
         if (!silent) {
             Server.getInstance().getPluginManager().callEvent(event);
@@ -225,11 +196,7 @@ public class Mine {
         Server.getInstance().getScheduler().scheduleAsyncTask(Mines.getInstance(), task);
     }
 
-    /**
-     * Remove mine
-     * @return Is removed
-     */
-    public boolean remove() {
-        return MineManager.remove(this);
+    public void remove() {
+        MineService.getInstance().removeMine(this);
     }
 }

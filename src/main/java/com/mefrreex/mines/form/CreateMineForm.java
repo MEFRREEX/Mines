@@ -5,7 +5,7 @@ import cn.nukkit.block.Block;
 import com.mefrreex.mines.Mines;
 import com.mefrreex.mines.mine.Mine;
 import com.mefrreex.mines.mine.MineBlock;
-import com.mefrreex.mines.mine.MineManager;
+import com.mefrreex.mines.service.MineService;
 import com.mefrreex.mines.utils.Area;
 import com.mefrreex.mines.utils.Language;
 import com.mefrreex.mines.utils.Point;
@@ -24,7 +24,7 @@ public class CreateMineForm {
         form.setHandler((pl, response) -> {
             String name = response.getInput("name").getValue();
             
-            if (MineManager.get(name) != null) {
+            if (MineService.getInstance().getMineByName(name).isPresent()) {
                 player.sendMessage(Mines.PREFIX_RED + Language.get("command-mine-already-exists"));
                 return;
             }
@@ -37,7 +37,7 @@ public class CreateMineForm {
             mine.setArea(new Area(point1, point2));
             mine.setLevelName(pl.getLevel().getName());
 
-            mine.init();
+            MineService.getInstance().addMine(mine);
             mine.update();
             player.sendMessage(Mines.PREFIX_GREEN + Language.get("subcommand-create-created"));
             

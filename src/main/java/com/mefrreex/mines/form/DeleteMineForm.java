@@ -15,9 +15,8 @@ public class DeleteMineForm {
             .setNegativeButton(Language.get("form-delete-button-back"))
             .setHandler((pl, response) -> {
                 if (response) {
-                    pl.sendMessage(Mines.PREFIX_RED + (mine.remove() ? 
-                        Language.get("form-delete-message-deleted") : 
-                        Language.get("command-mine-not-found")));
+                    mine.remove();
+                    pl.sendMessage(Mines.PREFIX_RED + Language.get("form-delete-message-deleted"));
                 }
             })
             .send(player);

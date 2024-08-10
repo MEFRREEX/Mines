@@ -12,7 +12,7 @@ import com.mefrreex.mines.form.CreateMineForm;
 import com.mefrreex.mines.form.EditMineForm;
 import com.mefrreex.mines.mine.Mine;
 import com.mefrreex.mines.mine.MineBlock;
-import com.mefrreex.mines.mine.MineManager;
+import com.mefrreex.mines.service.MineService;
 import com.mefrreex.mines.utils.Area;
 import com.mefrreex.mines.utils.Language;
 import com.mefrreex.mines.utils.Point;
@@ -50,7 +50,7 @@ public class CreateSubCommand extends BaseSubCommand {
         }
 
         if (args.length > 0) {
-            if (MineManager.get(args[0]) != null) {
+            if (MineService.getInstance().getMineByName(args[0]).isPresent()) {
                 player.sendMessage(Mines.PREFIX_RED + Language.get("command-mine-already-exists"));
                 return false;
             }
@@ -59,7 +59,7 @@ public class CreateSubCommand extends BaseSubCommand {
             mine.getBlocks().add(new MineBlock(new BlockStone(), 100));
             mine.setArea(new Area(point1, point2));
             mine.setLevelName(player.getLevel().getName());
-            mine.init();
+            MineService.getInstance().addMine(mine);
             mine.update();
 
             player.sendMessage(Mines.PREFIX_GREEN + Language.get("subcommand-create-created"));

@@ -10,7 +10,7 @@ import com.mefrreex.mines.Mines;
 import com.mefrreex.mines.event.MineBlockBreakEvent;
 import com.mefrreex.mines.event.NoMinePermissionEvent;
 import com.mefrreex.mines.mine.Mine;
-import com.mefrreex.mines.mine.MineManager;
+import com.mefrreex.mines.service.MineService;
 import com.mefrreex.mines.utils.Language;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class PlayerListener implements Listener {
     public void onMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
         
-        List<Mine> mines = MineManager.getMinesAt(player);
+        List<Mine> mines = MineService.getInstance().getMinesAtPosition(player);
         for (Mine mine : mines) {
             if (mine.getTeleportPoint() != null) {
 
@@ -58,7 +58,7 @@ public class PlayerListener implements Listener {
         Player player = event.getPlayer();
         Block block = event.getBlock();
 
-        List<Mine> mines = MineManager.getMinesAt(block);
+        List<Mine> mines = MineService.getInstance().getMinesAtPosition(block);
         for (Mine mine : mines) {
 
             if (mine.isUpdating()) {

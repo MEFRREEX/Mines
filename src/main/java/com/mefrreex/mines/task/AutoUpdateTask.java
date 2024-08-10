@@ -4,7 +4,7 @@ import cn.nukkit.scheduler.Task;
 
 import com.mefrreex.mines.Mines;
 import com.mefrreex.mines.mine.Mine;
-import com.mefrreex.mines.mine.MineManager;
+import com.mefrreex.mines.service.MineService;
 
 public class AutoUpdateTask extends Task {
 
@@ -18,12 +18,12 @@ public class AutoUpdateTask extends Task {
     public void onRun(int currentTick) {
         // Skip if there are no players on the server and updateIfNoPlayers = true
         boolean updateIfNoPlayers = main.getConfig().getBoolean("update-if-no-players", true);
-        if (!updateIfNoPlayers && main.getServer().getOnlinePlayers().size() < 1) {
+        if (!updateIfNoPlayers && main.getServer().getOnlinePlayers().isEmpty()) {
             return;
         }
 
         // Iteration of all mines
-        MineManager.getMines().forEach((level, mines) -> {
+        MineService.getInstance().getMines().forEach((level, mines) -> {
             // Skip if the level null or closed
             if (level == null || level.getProvider() == null) {
                 return;

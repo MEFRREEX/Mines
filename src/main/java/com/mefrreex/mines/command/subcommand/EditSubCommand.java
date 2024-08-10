@@ -10,8 +10,10 @@ import com.mefrreex.mines.command.BaseSubCommand;
 import com.mefrreex.mines.form.EditMineForm;
 import com.mefrreex.mines.form.SelectMineForm;
 import com.mefrreex.mines.mine.Mine;
-import com.mefrreex.mines.mine.MineManager;
+import com.mefrreex.mines.service.MineService;
 import com.mefrreex.mines.utils.Language;
+
+import java.util.Optional;
 
 public class EditSubCommand extends BaseSubCommand {
 
@@ -34,14 +36,14 @@ public class EditSubCommand extends BaseSubCommand {
         }
 
         if (args.length > 0) {
-            Mine mine = MineManager.get(args[0]);
+            Optional<Mine> mine = MineService.getInstance().getMineByName(args[0]);
             
-            if (mine == null) {
+            if (mine.isEmpty()) {
                 player.sendMessage(Mines.PREFIX_RED + Language.get("command-mine-not-found"));
                 return false;
             }
 
-            EditMineForm.sendTo(player, mine);
+            EditMineForm.sendTo(player, mine.get());
             return true;
         }
         
