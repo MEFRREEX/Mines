@@ -48,7 +48,7 @@ public class Mines extends PluginBase {
         this.mineService.getMinesFolder().mkdirs();
         this.mineService.loadMines();
 
-        this.getServer().getCommandMap().register("Mines", new MineCommand(this));
+        this.getServer().getCommandMap().register("Mines", new MineCommand("mine", this));
         this.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         this.getServer().getScheduler().scheduleRepeatingTask(this, new AutoUpdateTask(this), 20);
 
