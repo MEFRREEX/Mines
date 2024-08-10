@@ -1,36 +1,46 @@
 package com.mefrreex.mines.utils;
 
-import com.mefrreex.mines.Mines;
-
 import cn.nukkit.utils.Config;
 import cn.nukkit.utils.TextFormat;
+import com.mefrreex.mines.Mines;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Language {
 
-    private static Config messages;
-    
+    private static final Map<String, String> messages = new HashMap<>();
+
     /**
      * Load language
      */
-    public static void loadAll(Mines main) {
-        String lang = main.getConfig().getString("language", "eng").toLowerCase();
-        main.saveResource("lang/" + lang + ".yml");
-        Language.messages = new Config(main.getDataFolder() + "/lang/" + lang + ".yml", Config.YAML);
+    public static void init(Mines main) {
+        String language = main.getConfig().getString("language", "eng").toLowerCase();
+        main.saveResource("lang/" + language + ".yml");
+
+        Config config = new Config(main.getDataFolder() + "/lang/" + language + ".yml", Config.YAML);
+        config.getAll().forEach((key, value) -> {
+            if (value instanceof String message) {
+                messages.put(key, message);
+            }
+        });
     }
 
     /**
      * Get message
-     * @param key          Message key
-     * @param replacements Replacements
-     * @return             Message {@link String}
+     * @param key Message key
+     * @param replacements Message parameters
+     * @return String message
      */
     public static String get(String key, Object... replacements) {
-        String message = TextFormat.colorize(messages.getString(key, "null"));
+        String message = TextFormat.colorize(messages.getOrDefault(key, key));
+
         int i = 0;
         for (Object replacement : replacements) {
             message = message.replace("[" + i + "]", String.valueOf(replacement));
             i++;
         }
+
         return message;
     }
 }

@@ -42,13 +42,13 @@ public class Mines extends PluginBase {
 
     @Override
     public void onEnable() {
-        Language.loadAll(this);
+        Language.init(this);
 
         this.mineService = new MineServiceImpl();
         this.mineService.getMinesFolder().mkdirs();
         this.mineService.loadMines();
 
-        MineCommand.register();
+        this.getServer().getCommandMap().register("Mines", new MineCommand(this));
         this.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         this.getServer().getScheduler().scheduleRepeatingTask(this, new AutoUpdateTask(this), 20);
 

@@ -1,6 +1,5 @@
 package com.mefrreex.mines.command;
 
-import cn.nukkit.Server;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.utils.ConfigSection;
 import com.mefrreex.mines.Mines;
@@ -35,10 +34,5 @@ public class MineCommand extends BaseCommand {
     public boolean executeDefault(CommandSender sender, String label) {
         this.sendUsage(sender, "/" + label + " help");
         return true;
-    }
-    
-    public static void register() {
-        MineCommand command = new MineCommand("mine", Mines.getInstance());
-        Server.getInstance().getCommandMap().register("Mines", command);
     }
 }
