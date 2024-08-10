@@ -43,6 +43,7 @@ public class Mines extends PluginBase {
         Language.loadAll(this);
 
         this.mineService = new MineServiceImpl();
+        this.mineService.getMinesFolder().mkdirs();
         this.mineService.loadMines();
 
         MineCommand.register();
