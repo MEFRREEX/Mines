@@ -96,7 +96,7 @@ public class MineManager {
             return false;
         }
 
-        mine.init(Mines.getInstance());
+        mine.init();
         return true;
     }
 
@@ -130,7 +130,9 @@ public class MineManager {
             return false;
         }
 
-        if (!file.exists()) file.createNewFile();
+        if (!file.exists()) {
+            file.createNewFile();
+        }
 
         try (FileWriter writer = new FileWriter(file)){
             writer.write(json);

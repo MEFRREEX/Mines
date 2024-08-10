@@ -16,6 +16,7 @@ import java.util.HashMap;
 
 public class Mines extends PluginBase {
     
+    @Getter
     private static Mines instance;
 
     private static final @Getter HashMap<Player, Point> firstPoints = new HashMap<>();
@@ -59,10 +60,5 @@ public class Mines extends PluginBase {
         PREFIX_GREEN = Language.get("prefix-green");
         PREFIX_YELLOW = Language.get("prefix-yellow");
         PREFIX_RED = Language.get("prefix-red");
-    }
-
-    /* Instance */
-    public static Mines getInstance() {
-        return instance;
     }
 }

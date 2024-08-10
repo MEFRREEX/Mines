@@ -1,6 +1,7 @@
 package com.mefrreex.mines.mine;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.block.Block;
 import cn.nukkit.level.Level;
 import com.mefrreex.mines.Mines;
@@ -12,52 +13,43 @@ import com.mefrreex.mines.utils.Point;
 import com.mefrreex.mines.utils.PointLocation;
 import com.mefrreex.mines.utils.Utils;
 import com.google.gson.annotations.SerializedName;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
-@Getter @Setter
-@ToString(exclude = {"main"})
+@Getter
+@Setter
 public class Mine {
-    
-    /** Mine name */
-    @SerializedName("name") private final String name;
-    
-    /** Area and level name */
-    @SerializedName("area") private Area area;
-    @SerializedName("level") private String levelName;
-    
-    /** Mine permission */
-    @SerializedName("locked") private boolean locked;
-    @SerializedName("permission") private String permission;   
 
-    /** Auto update and update interval */
-    @SerializedName("autoUpdate") private boolean autoUpdate = true;
-    @SerializedName("updateInterval") private long updateInterval = 60;
+    private final String name;
+
+    private Area area;
+
+    @SerializedName("level")
+    private String levelName;
+    
+    private boolean locked;
+    private String permission;
+
+    private boolean autoUpdate = true;
+    private long updateInterval = 60;
+
     private transient AtomicLong currentUpdateInterval;
 
-    /** Update below percent and update percen*/
-    @SerializedName("updateBelowPercent") private boolean updateBelowPercent;
-    @SerializedName("updatePercent") private double updatePercent = 0;
+    private boolean updateBelowPercent;
+    private double updatePercent = 0;
 
-    /** Safe update */
-    @SerializedName("safeUpdate") private boolean safeUpdate;
-    /** Teleport point */
-    @SerializedName("teleportPoint") private PointLocation teleportPoint;
+    private boolean safeUpdate;
+    private PointLocation teleportPoint;
 
-    /** Mine blocks */
-    @SerializedName("blocks") private List<MineBlock> blocks = new ArrayList<>();
+    private List<MineBlock> blocks = new ArrayList<>();
     private transient AtomicLong currentSize;
     
     private transient boolean updating;
-
-    @Setter(value = AccessLevel.PRIVATE)
-    private transient Mines main;
+    private transient boolean initialized;
 
     public Mine(String name) {
         this(name, null);
@@ -70,26 +62,24 @@ public class Mine {
 
     /**
      * Init mine
-     * @param main
      * @return Mines instance
      */
-    public boolean init(Mines main) {
-        if (this.main != null) {
-            throw new RuntimeException("Mine is not initialized");
+    public boolean init() {
+        if (this.initialized) {
+            throw new RuntimeException("Mine already initialized");
         }
 
         MineInitEvent event = new MineInitEvent(this);
-        main.getServer().getPluginManager().callEvent(event);
+        Server.getInstance().getPluginManager().callEvent(event);
 
         if (event.isCancelled()) {
             return false;
         }
 
-        this.main = main;
         this.currentUpdateInterval = new AtomicLong(updateInterval);
         this.currentSize = new AtomicLong(0);
-        MineManager.getMines().computeIfAbsent(getLevel(), 
-            mines -> new ArrayList<>()).add(this);
+        this.initialized = true;
+        MineManager.getMines().computeIfAbsent(getLevel(), mines -> new ArrayList<>()).add(this);
         return true;
 
     }
@@ -137,10 +127,10 @@ public class Mine {
 
     /**
      * Get mine level
-     * @return
+     * @return Level
      */
     public Level getLevel() {
-        return main.getServer().getLevelByName(levelName);
+        return Server.getInstance().getLevelByName(levelName);
     }
 
     /**
@@ -177,7 +167,7 @@ public class Mine {
     /**
      * Is point in this mine
      * @param point Point
-     * @return      boolean
+     * @return boolean
      */
     public boolean isInMine(Point point) {
         return area.isInside(point);
@@ -203,12 +193,14 @@ public class Mine {
      * @param silent Do not call MineUpdateEvent
      */
     public void update(boolean silent) {
-        if (main == null) {
+        if (!this.initialized) {
             throw new RuntimeException("Mine is not initialized");
         }
 
         MineUpdateEvent event = new MineUpdateEvent(this);
-        if (!silent) main.getServer().getPluginManager().callEvent(event);
+        if (!silent) {
+            Server.getInstance().getPluginManager().callEvent(event);
+        }
 
         if (event.isCancelled()) {
             return;
@@ -230,7 +222,7 @@ public class Mine {
         }
 
         UpdateMineTask task = new UpdateMineTask(this);
-        main.getServer().getScheduler().scheduleAsyncTask(main, task);
+        Server.getInstance().getScheduler().scheduleAsyncTask(Mines.getInstance(), task);
     }
 
     /**
