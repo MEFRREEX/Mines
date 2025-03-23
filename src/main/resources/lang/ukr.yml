@@ -90,6 +90,7 @@ form-edit-settings-input-permission-placeholder: "Дозвіл"
 
 form-edit-settings-label-auto-update: "Автоматичне оновлення"
 form-edit-settings-toggle-auto-update: "Увімкнути автоматичне оновлення"
+form-edit-settings-toggle-update-on-load: "Оновлювати шахту під час завантаження"
 form-edit-settings-input-update-interval-name: "Інтервал оновлення &7(У секундах)"
 form-edit-settings-input-update-interval-placeholder: "Інтервал"
 

@@ -67,7 +67,8 @@ public class EditMineForm {
 
             .addElement("\n" + Mines.PREFIX_YELLOW + Language.get("form-edit-settings-label-auto-update"))
             .addElement("autoUpdate", new Toggle(Language.get("form-edit-settings-toggle-auto-update"), mine.isAutoUpdate()))
-            
+            .addElement("updateOnLoad", new Toggle(Language.get("form-edit-settings-toggle-update-on-load"), mine.isUpdateOnLoad()))
+
             .addElement("updateInterval", new Input()
                 .setName(Language.get("form-edit-settings-input-update-interval-name"))
                 .setPlaceholder(Language.get("form-edit-settings-input-update-interval-placeholder"))
@@ -109,6 +110,7 @@ public class EditMineForm {
                 player.sendMessage(Mines.PREFIX_RED + Language.get("form-edit-settings-message-interval-nan"));
                 return;
             }
+            boolean updateOnLoad = response.getToggle("updateOnLoad").getValue();
 
             // Update below percent
             boolean updateBelowPercent = response.getToggle("updateBelowPercent").getValue();
@@ -131,6 +133,7 @@ public class EditMineForm {
             mine.setLocked(locked);
             mine.setPermission(permission);
             mine.setAutoUpdate(autoUpdate);
+            mine.setUpdateOnLoad(updateOnLoad);
             mine.setUpdateInterval(updateInterval);
             mine.setUpdateBelowPercent(updateBelowPercent);
             mine.setUpdatePercent(updatePercent);

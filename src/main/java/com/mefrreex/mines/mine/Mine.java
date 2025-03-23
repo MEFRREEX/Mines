@@ -34,6 +34,7 @@ public class Mine {
     private boolean locked;
     private String permission;
 
+    private boolean updateOnLoad = false;
     private boolean autoUpdate = true;
     private long updateInterval = 60;
 

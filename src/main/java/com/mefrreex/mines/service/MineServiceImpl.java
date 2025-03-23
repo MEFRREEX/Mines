@@ -67,6 +67,10 @@ public class MineServiceImpl implements MineService {
 
         mines.computeIfAbsent(mine.getLevel(), mines -> new HashSet<>()).add(mine);
         mineByName.put(mine.getName(), mine);
+
+        if (mine.isUpdateOnLoad()) {
+            mine.update();
+        }
     }
 
     @Override

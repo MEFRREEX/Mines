@@ -90,6 +90,7 @@ form-edit-settings-input-permission-placeholder: "Permission"
 
 form-edit-settings-label-auto-update: "Auto update"
 form-edit-settings-toggle-auto-update: "Enable auto update"
+form-edit-settings-toggle-update-on-load: "Update the mine on load"
 form-edit-settings-input-update-interval-name: "Update interval &7(In seconds)"
 form-edit-settings-input-update-interval-placeholder: "Interval"
 
